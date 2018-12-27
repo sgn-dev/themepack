@@ -1,0 +1,33 @@
+{
+  "name":"sgn47gradnord/themepack",
+  "description":"Customized Extension to use Theme working on Contao 4.6.+",
+  "type":"contao-bundle",
+  "license":"proprietary",
+  "authors":[
+    {
+      "name":"47 GradNord - Agentur für Internetlösungen",
+      "homepage":"http://www.47gradnord.de"
+    }
+  ],
+  "require":{
+    "php": "^7.1.0"
+  },
+  "require-dev":{
+    "contao/core-bundle": "4.4.*",
+    "contao/manager-plugin": "2.6.*",
+    "friendsofphp/php-cs-fixer": "^2.1"
+  },
+  "conflict": {
+    "contao/core": "*",
+    "contao/core-bundle": "4.4.1",
+    "contao/manager-plugin": "<2.0 || >=3.0"
+  },
+  "autoload":{
+    "psr-4": {
+      "Sgn47gradnord\\Themepack\\": "src/"
+    }
+  },
+  "extra":{
+    "contao-manager-plugin": "Sgn47gradnord\\Themepack\\ContaoManager\\Plugin"
+  }
+}
