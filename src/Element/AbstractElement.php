@@ -1,13 +1,13 @@
 <?php
-/**
- * 47GN THEMEPACK for Contao Open Source CMS
- *
- * Copyright (C) 2018 47GradNord - Agentur für Internetlösungen
- *
- * @license    commercial
- * @author     Holger Neuner
- */
 
+declare(strict_types=1);
+
+/*
+ * Themepack - to produce Websites using Theme, 47GradNord - Agentur für Internetlösungen  ThemepackBundle
+ *
+ * @copyright  Copyright (c) 2008-2018, 47GradNord - Agentur für Internetlösungen
+ * @author     47GradNord - Agentur für Internetlösungen <info@47gradnord.de>
+ */
 
 namespace Sgn47gradnord\Themepack\Element;
 
@@ -15,5 +15,4 @@ use Contao\ContentElement;
 
 abstract class AbstractElement extends ContentElement
 {
-
 }

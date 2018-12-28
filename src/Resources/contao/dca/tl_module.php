@@ -1,17 +1,17 @@
 <?php
-/**
- * 47GN THEMEPACK for Contao Open Source CMS
+
+declare(strict_types=1);
+
+/*
+ * Themepack - to produce Websites using Theme, 47GradNord - Agentur für Internetlösungen  ThemepackBundle
  *
- * Copyright (C) 2018 47GradNord - Agentur für Internetlösungen
- *
- * @license    commercial
- * @author     Holger Neuner
+ * @copyright  Copyright (c) 2008-2018, 47GradNord - Agentur für Internetlösungen
+ * @author     47GradNord - Agentur für Internetlösungen <info@47gradnord.de>
  */
 
 /**
- * Palettes
+ * Palettes.
  */
-
 $GLOBALS['TL_DCA']['tl_module']['palettes']['tp_headerbar'] = '
 {title_legend},name,type;
 {logo_legend},tp_singleSRC,tp_size;
@@ -20,29 +20,28 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['tp_headerbar'] = '
 {template_legend:hide},customTpl;
 {expert_legend:hide},guests,cssID,space';
 
-/**
+/*
  * Fields
  */
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['tp_singleSRC'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_module']['tp_singleSRC'],
-    'exclude'                 => true,
-    'inputType'               => 'fileTree',
-    'eval'                    => array('filesOnly'=>true, 'fieldType'=>'radio', 'mandatory'=>true, 'tl_class'=>'clr'),
-    'sql'                     => "binary(16) NULL"
+    'exclude' => true,
+    'inputType' => 'fileTree',
+    'eval' => ['filesOnly' => true, 'fieldType' => 'radio', 'mandatory' => true, 'tl_class' => 'clr'],
+    'sql' => 'binary(16) NULL',
 ];
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['tp_size'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_module']['tp_size'],
-    'exclude'                 => true,
-    'inputType'               => 'imageSize',
-    'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-    'eval'                    => array('rgxp'=>'natural', 'includeBlankOption'=>true, 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'),
-    'options_callback' => function ()
-    {
+    'exclude' => true,
+    'inputType' => 'imageSize',
+    'reference' => &$GLOBALS['TL_LANG']['MSC'],
+    'eval' => ['rgxp' => 'natural', 'includeBlankOption' => true, 'nospace' => true, 'helpwizard' => true, 'tl_class' => 'w50'],
+    'options_callback' => function () {
         return System::getContainer()->get('contao.image.image_sizes')->getOptionsForUser(BackendUser::getInstance());
     },
-    'sql'                     => "varchar(64) NOT NULL default ''"
+    'sql' => "varchar(64) NOT NULL default ''",
 ];
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['tp_includeModule'] = [

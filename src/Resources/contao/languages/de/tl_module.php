@@ -1,19 +1,20 @@
 <?php
-/**
- * 47GN THEMEPACK for Contao Open Source CMS
+
+declare(strict_types=1);
+
+/*
+ * Themepack - to produce Websites using Theme, 47GradNord - Agentur für Internetlösungen  ThemepackBundle
  *
- * Copyright (C) 2018 47GradNord - Agentur für Internetlösungen
- *
- * @license    commercial
- * @author     Holger Neuner
+ * @copyright  Copyright (c) 2008-2018, 47GradNord - Agentur für Internetlösungen
+ * @author     47GradNord - Agentur für Internetlösungen <info@47gradnord.de>
  */
 
 /**
- * Labels
+ * Labels.
  */
 $GLOBALS['TL_LANG']['tl_module']['logo_legend'] = 'Logo';
 
-/**
+/*
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_module']['tp_singleSRC'] = ['Bildquelle', 'Wählen Sie hier die gewünschte Bildquelle'];

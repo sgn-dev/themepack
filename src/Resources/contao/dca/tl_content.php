@@ -1,19 +1,20 @@
 <?php
-/**
- * 47GN THEMEPACK for Contao Open Source CMS
+
+declare(strict_types=1);
+
+/*
+ * Themepack - to produce Websites using Theme, 47GradNord - Agentur für Internetlösungen  ThemepackBundle
  *
- * Copyright (C) 2018 47GradNord - Agentur für Internetlösungen
- *
- * @license    commercial
- * @author     Holger Neuner
+ * @copyright  Copyright (c) 2008-2018, 47GradNord - Agentur für Internetlösungen
+ * @author     47GradNord - Agentur für Internetlösungen <info@47gradnord.de>
  */
 
 /**
- * Callbacks
+ * Callbacks.
  */
 $GLOBALS['TL_DCA']['tl_content']['config']['onsubmit_callback'][] = ['Sgn47gradnord\Themepack\Backend\Callback', 'onsubmitCallbackTlContent'];
 
-/**
+/*
  * Palettes
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_swiperslider_start'] = '{type_legend},type;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
@@ -33,7 +34,7 @@ $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tp_addImage'] = 'tp_singleSRC,t
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'tp_addImage';
 
-/**
+/*
  * Fields
  */
 $GLOBALS['TL_DCA']['tl_content']['fields']['tp_sliderHeadline'] = [
@@ -62,23 +63,22 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tp_addImage'] = [
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['tp_singleSRC'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_singleSRC'],
-    'exclude'                 => true,
-    'inputType'               => 'fileTree',
-    'eval'                    => array('filesOnly'=>true, 'fieldType'=>'radio', 'mandatory'=>true, 'tl_class'=>'clr'),
-    'sql'                     => "binary(16) NULL"
+    'exclude' => true,
+    'inputType' => 'fileTree',
+    'eval' => ['filesOnly' => true, 'fieldType' => 'radio', 'mandatory' => true, 'tl_class' => 'clr'],
+    'sql' => 'binary(16) NULL',
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['tp_size'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_size'],
-    'exclude'                 => true,
-    'inputType'               => 'imageSize',
-    'reference'               => &$GLOBALS['TL_LANG']['MSC'],
-    'eval'                    => array('rgxp'=>'natural', 'includeBlankOption'=>true, 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'),
-    'options_callback' => function ()
-    {
+    'exclude' => true,
+    'inputType' => 'imageSize',
+    'reference' => &$GLOBALS['TL_LANG']['MSC'],
+    'eval' => ['rgxp' => 'natural', 'includeBlankOption' => true, 'nospace' => true, 'helpwizard' => true, 'tl_class' => 'w50'],
+    'options_callback' => function () {
         return System::getContainer()->get('contao.image.image_sizes')->getOptionsForUser(BackendUser::getInstance());
     },
-    'sql'                     => "varchar(64) NOT NULL default ''"
+    'sql' => "varchar(64) NOT NULL default ''",
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['tp_subHeadline'] = [
@@ -108,10 +108,10 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tp_lastColumn'] = [
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['tp_text'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_text'],
-    'exclude'                 => true,
-    'search'                  => true,
-    'inputType'               => 'textarea',
-    'eval'                    => array('rte'=>'tinyMCE', 'helpwizard'=>true),
-    'explanation'             => 'insertTags',
-    'sql'                     => "mediumtext NULL"
+    'exclude' => true,
+    'search' => true,
+    'inputType' => 'textarea',
+    'eval' => ['rte' => 'tinyMCE', 'helpwizard' => true],
+    'explanation' => 'insertTags',
+    'sql' => 'mediumtext NULL',
 ];

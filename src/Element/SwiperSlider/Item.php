@@ -1,16 +1,15 @@
 <?php
-/**
- * 47GN THEMEPACK for Contao Open Source CMS
+
+declare(strict_types=1);
+
+/*
+ * Themepack - to produce Websites using Theme, 47GradNord - Agentur für Internetlösungen  ThemepackBundle
  *
- * Copyright (C) 2018 47GradNord - Agentur für Internetlösungen
- *
- * @license    commercial
- * @author     Holger Neuner
+ * @copyright  Copyright (c) 2008-2018, 47GradNord - Agentur für Internetlösungen
+ * @author     47GradNord - Agentur für Internetlösungen <info@47gradnord.de>
  */
 
-
 namespace Sgn47gradnord\Themepack\Element\SwiperSlider;
-
 
 use Sgn47gradnord\Themepack\ContaoHelper;
 use Sgn47gradnord\Themepack\Element\AbstractElement;
@@ -23,14 +22,13 @@ class Item extends AbstractElement
     protected $strTemplate = 'ce_tp_swiperslider_item';
 
     /**
-     * Compile the Element
+     * Compile the Element.
      */
     protected function compile()
     {
         $objModel = \FilesModel::findByUuid($this->tp_singleSRC);
 
-        if ($objModel !== null && is_file(TL_ROOT . '/' . $objModel->path))
-        {
+        if (null !== $objModel && is_file(TL_ROOT . '/' . $objModel->path)) {
             $this->tp_singleSRC = $objModel->path;
             ContaoHelper::addImageToTemplate($this->Template, $this->arrData, null, null, $objModel);
         }
