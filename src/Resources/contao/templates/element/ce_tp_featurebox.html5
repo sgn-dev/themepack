@@ -1,24 +1,40 @@
 <?php if ('FE' === TL_MODE): ?>
     <div class="<?= $this->tp_numberColumns; ?> <?php if($this->tp_lastColumn): ?>col_last<?php endif; ?>">
-        <div class="feature-box media-box">
-            <?php if($this->tp_addImage == '1'): ?>
+
+        <?php if($this->tpfeatureboxtype == 'standard'): ?>
+            <div class="feature-box media-box">
                 <div class="fbox-media">
                     <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
                 </div>
-            <?php endif; ?>
-            <div class="fbox-desc">
+                <div class="fbox-desc">
+                    <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
+                <?= $this->tp_text; ?>
+            </div>
+            </div>
+        <?php endif; ?><!-- // Standard -->
+
+        <?php if($this->tpfeatureboxtype == 'icon'): ?>
+            <div class="feature-box fbox-effect">
+                <div class="fbox-icon">
+                    <i class="<?= $this->tp_icon; ?>"></i>
+                </div>
                 <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
                 <?= $this->tp_text; ?>
             </div>
-        </div>
+        <?php endif; ?><!-- // Icon -->
+
     </div>
 <?php endif; ?>
 
-<h1><?= $this->headline; ?></h1>
-<?php if($this->tp_addImage == '1'): ?>
-    <div class="fbox-media">
-        <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
-    </div>
+<?php if ('BE' === TL_MODE): ?>
+    <h1><?= $this->headline; ?></h1>
+    <?php if($this->tp_addImage == '1'): ?>
+        <div class="fbox-media">
+            <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
+        </div>
+    <?php endif; ?>
+    <?= $this->tp_text; ?>
 <?php endif; ?>
-<?= $this->tp_text; ?>
+
+
 

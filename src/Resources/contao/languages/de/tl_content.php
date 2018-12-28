@@ -14,6 +14,9 @@ declare(strict_types=1);
  */
 $GLOBALS['TL_LANG']['tl_content']['slidercontent_legend'] = 'Textinhalte Slider';
 $GLOBALS['TL_LANG']['tl_content']['column_legend'] = 'Spalten-Konfiguration';
+$GLOBALS['TL_LANG']['tl_content']['headline_legend'] = 'Überschriften';
+$GLOBALS['TL_LANG']['tl_content']['featurebox_legend'] = 'Art der Feature-Box';
+$GLOBALS['TL_LANG']['tl_content']['icon_legend'] = 'Icon';
 
 /*
  * Fields
@@ -27,3 +30,5 @@ $GLOBALS['TL_LANG']['tl_content']['tp_subHeadline'] = ['Unter-Überschrift', 'Tr
 $GLOBALS['TL_LANG']['tl_content']['tp_numberColumns'] = ['Anzahl Spalten', 'Wählen Sie die gewünschte Spalten-Aufteilung aus.'];
 $GLOBALS['TL_LANG']['tl_content']['tp_lastColumn'] = ['Letzte Spalte?', 'Aktivieren Sie diese Option, wenn das Element das letzte seiner Reihe ist.'];
 $GLOBALS['TL_LANG']['tl_content']['tp_text'] = ['Text', 'Tragen Sie hier den gewünschten Text ein.'];
+$GLOBALS['TL_LANG']['tl_content']['tpfeatureboxtype'] = ['Art', 'Bitte wählen Sie die gewünschet Art aus.'];
+$GLOBALS['TL_LANG']['tl_content']['tp_icon'] = ['Icon', 'Bitte tragen Sie den Code des gewünschten Icons ein.'];

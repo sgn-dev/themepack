@@ -22,17 +22,20 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_swiperslider_item'] = '{type_le
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_container_start'] = '{type_legend},type;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['tp_featurebox'] = '{type_legend},type,headline,tp_subHeadline;{image_legend},tp_addImage;{text_legend},tp_text;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['tp_featurebox'] = '{type_legend},type;{featurebox_legend},tpfeatureboxtype;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 
 /*
  * Sub Palettes
  */
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tp_addImage'] = 'tp_singleSRC,tp_size';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_standard'] = 'headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;{text_legend},tp_text;';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_icon'] = 'tp_icon;{text_legend},tp_text;';
 
 /*
  * Selectoren
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'tp_addImage';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'tpfeatureboxtype';
 
 /*
  * Fields
@@ -115,3 +118,24 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tp_text'] = [
     'explanation' => 'insertTags',
     'sql' => 'mediumtext NULL',
 ];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['tpfeatureboxtype'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['tpfeatureboxtype'],
+    'default'                 => 'standard',
+    'exclude'                 => true,
+    'filter'                  => true,
+    'inputType'               => 'radio',
+    'options'                 => array('standard' => 'Standard', 'icon' => 'Icon'),
+    'eval'                    => array('submitOnChange'=>true, 'helpwizard'=>true),
+    'sql'                     => "varchar(12) NOT NULL default ''"
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['tp_icon'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_icon'],
+    'exclude' => true,
+    'inputType' => 'text',
+    'eval' => ['maxlength' => 200, 'tl_class' => 'w50 clr'],
+    'sql' => "varchar(255) NOT NULL default ''",
+];
+
+
