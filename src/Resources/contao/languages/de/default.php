@@ -22,6 +22,7 @@ $GLOBALS['TL_LANG']['CTE']['themepack-swiperslider'] = 'Themepack - Swiper Slide
 $GLOBALS['TL_LANG']['CTE']['tp_swiperslider_start'] = ['Start', 'Swiper-Slider Start'];
 $GLOBALS['TL_LANG']['CTE']['tp_swiperslider_item'] = ['Element', 'Swiper-Slider Element'];
 $GLOBALS['TL_LANG']['CTE']['tp_swiperslider_stop'] = ['Ende', 'Swiper-Slider Ende'];
+$GLOBALS['TL_LANG']['CTE']['tp_featurebox'] = ['Feature-Box', 'Fügt das Element ein'];
 
 /**
  * Frontend Modules

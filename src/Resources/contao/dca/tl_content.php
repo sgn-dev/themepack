@@ -21,6 +21,18 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_swiperslider_item'] = '{type_le
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_container_start'] = '{type_legend},type;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 
+$GLOBALS['TL_DCA']['tl_content']['palettes']['tp_featurebox'] = '{type_legend},type,headline,tp_subHeadline;{image_legend},tp_addImage;{text_legend},tp_text;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
+
+/*
+ * Sub Palettes
+ */
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tp_addImage'] = 'tp_singleSRC,tp_size';
+
+/*
+ * Selectoren
+ */
+$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'tp_addImage';
+
 /**
  * Fields
  */
@@ -38,6 +50,14 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tp_sliderContent'] = [
     'inputType' => 'text',
     'eval' => ['maxlength' => 200, 'tl_class' => 'w50 clr'],
     'sql' => "varchar(255) NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['tp_addImage'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_addImage'],
+    'exclude' => true,
+    'inputType' => 'checkbox',
+    'eval' => ['submitOnChange' => true, 'tl_class' => 'm12'],
+    'sql' => "char(1) NOT NULL default ''",
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['tp_singleSRC'] = [
@@ -59,4 +79,39 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tp_size'] = [
         return System::getContainer()->get('contao.image.image_sizes')->getOptionsForUser(BackendUser::getInstance());
     },
     'sql'                     => "varchar(64) NOT NULL default ''"
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['tp_subHeadline'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_subHeadline'],
+    'exclude' => true,
+    'inputType' => 'text',
+    'eval' => ['maxlength' => 200, 'tl_class' => 'w50 clr'],
+    'sql' => "varchar(255) NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['tp_numberColumns'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_numberColumns'],
+    'exclude' => true,
+    'inputType' => 'select',
+    'options' => $GLOBALS['THEMEPACK']['numberColumns'],
+    'eval' => ['tl_class' => 'w50 clr'],
+    'sql' => "char(64) NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['tp_lastColumn'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_lastColumn'],
+    'exclude' => true,
+    'inputType' => 'checkbox',
+    'eval' => ['tl_class' => 'w50'],
+    'sql' => "char(1) NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['tp_text'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_text'],
+    'exclude'                 => true,
+    'search'                  => true,
+    'inputType'               => 'textarea',
+    'eval'                    => array('rte'=>'tinyMCE', 'helpwizard'=>true),
+    'explanation'             => 'insertTags',
+    'sql'                     => "mediumtext NULL"
 ];
