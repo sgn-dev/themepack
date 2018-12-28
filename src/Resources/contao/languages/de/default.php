@@ -12,7 +12,14 @@
  * Content Elements
  */
 $GLOBALS['TL_LANG']['CTE']['themepack-elements'] = 'Themepack - Elemente';
-$GLOBALS['TL_LANG']['CTE']['tp_bundles'] = 'Themepack - Bundles';
+
+/**
+ * Swiper Slider
+ */
+$GLOBALS['TL_LANG']['CTE']['themepack-swiperslider'] = 'Themepack - Swiper Slider';
+$GLOBALS['TL_LANG']['CTE']['tp_swiperslider_start'] = ['Start', 'Swiper-Slider Start'];
+$GLOBALS['TL_LANG']['CTE']['tp_swiperslider_item'] = ['Element', 'Swiper-Slider Element'];
+$GLOBALS['TL_LANG']['CTE']['tp_swiperslider_stop'] = ['Ende', 'Swiper-Slider Ende'];
 
 /**
  * Frontend Modules
