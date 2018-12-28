@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="<?= $this->language ?>"<?php if ($this->isRTL): ?> dir="rtl"<?php endif; ?>>
+<head>
+
+    <?php $this->block('head'); ?>
+    <meta charset="<?= $this->charset ?>">
+    <title><?= $this->title ?></title>
+    <base href="<?= $this->base ?>">
+
+    <?php $this->block('meta'); ?>
+    <meta name="robots" content="<?= $this->robots ?>">
+    <meta name="description" content="<?= $this->description ?>">
+    <meta name="generator" content="Contao Open Source CMS">
+    <?php $this->endblock(); ?>
+
+    <?= $this->viewport ?>
+    <?= $this->framework ?>
+    <?= $this->stylesheets ?>
+    <?= $this->mooScripts ?>
+    <?= $this->head ?>
+
+    <?php $this->block('html5shiv'); ?>
+    <!--[if lt IE 9]><script src="<?= TL_ASSETS_URL ?>assets/html5shiv/js/html5shiv-printshiv.min.js"></script><![endif]-->
+    <?php $this->endblock(); ?>
+    <?php $this->endblock(); ?>
+
+</head>
+<body id="top" class=" {{ua::class}}<?php if ($this->class) echo ' ' . $this->class; ?>"<?php if ($this->onload): ?> onload="<?= $this->onload ?>"<?php endif; ?> itemscope itemtype="http://schema.org/WebPage">
+
+<?php $this->block('body'); ?>
+<?php $this->endblock(); ?>
+
+<?php if($this->left === '' && $this->right === ''): ?>
+    <div id="wrapper" class="clearfix">
+        <?= $this->header; ?>
+        <?= $this->sections['topslider']; ?>
+        <?= $this->sections['pagetitle']; ?>
+        <?= $this->sections['pagesubmenu']; ?>
+        <?= $this->sections['infobar']; ?>
+        <section id="content">
+            <div class="content-wrap">
+                <?= $this->main ?>
+            </div>
+        </section>
+        <?= $this->footer; ?>
+    </div><!-- Variante No Left Bar, no right Bar -->
+<?php endif; ?>
+
+<?php if($this->right !== '' && $this->left === ''): ?>
+    <div id="wrapper" class="clearfix">
+        <?= $this->header; ?>
+        <?= $this->sections['pagetitle']; ?>
+        <?= $this->sections['pagesubmenu']; ?>
+        <?= $this->sections['infobar']; ?>
+        <section id="content">
+            <div class="content-wrap">
+                <div class="container clearfix">
+                    <div class="postcontent nobottommargin clearfix">
+                        <?= $this->main ?>
+                    </div>
+                    <div class="sidebar nobottommargin col_last clearfix">
+                        <?= $this->right ?>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <?= $this->footer; ?>
+    </div><!-- Variante Right Bar, NO left Bar -->
+<?php endif; ?>
+
+
+<?= $this->mootools ?>
+
+</body>
+</html>

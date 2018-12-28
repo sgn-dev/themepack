@@ -1,0 +1,13 @@
+<?php
+$GLOBALS['TL_CSS'][] = 'layout/vendor/css/bootstrap.css|static';
+$GLOBALS['TL_CSS'][] = 'layout/css/styles.css|static';
+$GLOBALS['TL_CSS'][] = 'layout/vendor/css/swiper.css|static';
+$GLOBALS['TL_CSS'][] = 'layout/vendor/css/dark.css|static';
+$GLOBALS['TL_CSS'][] = 'layout/vendor/css/font-icons.css|static';
+$GLOBALS['TL_CSS'][] = 'layout/vendor/css/animate.css|static';
+$GLOBALS['TL_CSS'][] = 'layout/vendor/css/magnific-popup.css|static';
+$GLOBALS['TL_CSS'][] = 'layout/vendor/css/responsive.css|static';
+?>
+<script src="<?= TL_ASSETS_URL ?>layout/vendor/js/jquery.js"></script>
+<script src="<?= TL_ASSETS_URL ?>layout/vendor/js/plugins.js"></script>
+<script src="<?= TL_ASSETS_URL ?>layout/vendor/js/functions.js"></script>
