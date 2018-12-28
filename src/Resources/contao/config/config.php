@@ -12,11 +12,11 @@ declare(strict_types=1);
 /**
  * Content Elements
  */
-$GLOBALS['TL_CTE']['themepack-elements']['test'] = 'ThemepackBundle\Frontend\Element\TextIntroduction';
+$GLOBALS['TL_CTE']['themepack-elements']['test'] = 'Sgn47gradnord\Themepack\Module\Headerbar';
 
 /**
  * Frontend Modules
  */
 $GLOBALS['FE_MOD']['themepack'] = [
-    'tp_headerbar'         => 'ThemepackBundle\Module\Headerbar'
+    'tp_headerbar'         => 'Sgn47gradnord\Themepack\Module\Headerbar'
 ];
