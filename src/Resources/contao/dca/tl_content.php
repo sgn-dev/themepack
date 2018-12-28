@@ -9,10 +9,17 @@
  */
 
 /**
+ * Callbacks
+ */
+$GLOBALS['TL_DCA']['tl_content']['config']['onsubmit_callback'][] = ['Sgn47gradnord\Themepack\Backend\Callback', 'onsubmitCallbackTlContent'];
+
+/**
  * Palettes
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_swiperslider_start'] = '{type_legend},type;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_swiperslider_item'] = '{type_legend},type;{image_legend},tp_singleSRC,tp_size;{slidercontent_legend},tp_sliderHeadline,tp_sliderContent;{forward_legend},urban_addButtonForward;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
+
+$GLOBALS['TL_DCA']['tl_content']['palettes']['tp_container_start'] = '{type_legend},type;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 
 /**
  * Fields

@@ -12,7 +12,10 @@ declare(strict_types=1);
 /**
  * Content Elements
  */
-$GLOBALS['TL_CTE']['themepack-elements']['test'] = 'Sgn47gradnord\Themepack\Module\Headerbar';
+$GLOBALS['TL_CTE']['themepack-elements'] = [
+    'tp_container_start'            => 'Sgn47gradnord\Themepack\Element\ContainerStart',
+    'tp_container_stop'             => 'Sgn47gradnord\Themepack\Element\ContainerStop',
+];
 
 /**
  * Swiper Slider
@@ -29,6 +32,9 @@ $GLOBALS['TL_CTE']['themepack-swiperslider'] = [
  */
 $GLOBALS['TL_WRAPPERS']['start'][] = 'tp_swiperslider_start';
 $GLOBALS['TL_WRAPPERS']['stop'][] = 'tp_swiperslider_stop';
+
+$GLOBALS['TL_WRAPPERS']['start'][] = 'tp_container_start';
+$GLOBALS['TL_WRAPPERS']['stop'][] = 'tp_container_stop';
 
 
 /**

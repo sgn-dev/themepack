@@ -12,6 +12,8 @@
  * Content Elements
  */
 $GLOBALS['TL_LANG']['CTE']['themepack-elements'] = 'Themepack - Elemente';
+$GLOBALS['TL_LANG']['CTE']['tp_container_start'] = ['Container Start', 'Container Start'];
+$GLOBALS['TL_LANG']['CTE']['tp_container_stop'] = ['Container Stop', 'Container Stop'];
 
 /**
  * Swiper Slider
