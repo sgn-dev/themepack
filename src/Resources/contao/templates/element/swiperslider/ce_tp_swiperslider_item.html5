@@ -1,1 +1,16 @@
-ITEM
+<?php if ('FE' === TL_MODE): ?>
+    <div class="swiper-slide dark" style="background-image: url('<?= $this->tp_src; ?>');">
+        <div class="container clearfix">
+            <div class="slider-caption slider-caption-center">
+                <h2 data-animate="fadeInUp"><?= $this->tp_sliderHeadline; ?></h2>
+                <p class="d-none d-sm-block" data-animate="fadeInUp" data-delay="200"><?= $this->tp_sliderContent; ?></p>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if ('BE' === TL_MODE): ?>
+<h1><?= $this->tp_sliderHeadline; ?></h1>
+<p><?= $this->tp_sliderContent; ?></p>
+<img src="<?= $this->tp_src; ?>">
+<?php endif; ?>

@@ -12,6 +12,7 @@
 namespace Sgn47gradnord\Themepack\Element\SwiperSlider;
 
 
+use Sgn47gradnord\Themepack\ContaoHelper;
 use Sgn47gradnord\Themepack\Element\AbstractElement;
 
 class Item extends AbstractElement
@@ -26,6 +27,12 @@ class Item extends AbstractElement
      */
     protected function compile()
     {
-        // TODO: Implement compile() method.
+        $objModel = \FilesModel::findByUuid($this->tp_singleSRC);
+
+        if ($objModel !== null && is_file(TL_ROOT . '/' . $objModel->path))
+        {
+            $this->tp_singleSRC = $objModel->path;
+            ContaoHelper::addImageToTemplate($this->Template, $this->arrData, null, null, $objModel);
+        }
     }
 }

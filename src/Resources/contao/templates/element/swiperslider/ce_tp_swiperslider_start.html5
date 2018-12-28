@@ -1,1 +1,6 @@
-START
+<?php if ('FE' === TL_MODE): ?>
+<section id="slider" class="slider-element slider-parallax swiper_wrapper full-screen clearfix">
+    <div class="slider-parallax-inner">
+        <div class="swiper-container swiper-parent">
+            <div class="swiper-wrapper">
+<?php endif; ?>
