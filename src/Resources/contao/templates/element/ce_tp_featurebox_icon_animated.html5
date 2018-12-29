@@ -1,0 +1,76 @@
+<?php if ('FE' === TL_MODE): ?>
+<div class="<?= $this->tp_numberColumns; ?> <?php if($this->tp_lastColumn): ?>col_last<?php endif; ?>">
+
+    <?php if($this->tpfeatureboxtype == 'tpstandard'): ?>
+        <div class="feature-box media-box">
+            <div class="fbox-media">
+                <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
+            </div>
+            <div class="fbox-desc">
+                <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
+            <?= $this->tp_text; ?>
+        </div>
+        </div>
+    <?php endif; ?><!-- // Type Standard -->
+
+    <?php if($this->tpfeatureboxtype == 'tpicon'): ?>
+        <div class="feature-box fbox-small fbox-plain fadeIn animated" data-animate="fadeIn" data-delay="200">
+        <div class="fbox-icon">
+            <i class="<?= $this->tp_icon; ?>"></i>
+        </div>
+        <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
+        <?= $this->tp_text; ?>
+        </div>
+    <?php endif; ?><!-- // Type Icon -->
+
+    <?php if($this->tpfeatureboxtype == 'tpimage'): ?>
+        <div class="feature-box media-box">
+            <div class="fbox-media">
+                <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
+            </div>
+            <div class="fbox-desc">
+                <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
+        </div>
+        </div>
+    <?php endif; ?><!-- // Type Image -->
+
+    <?php if($this->tpfeatureboxtype == 'tptext'): ?>
+        <div class="feature-box">
+            <div class="fbox-desc">
+                <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
+            <?= $this->tp_text; ?>
+        </div>
+        </div>
+    <?php endif; ?><!-- // Type Text -->
+
+    </div>
+<?php endif; ?>
+
+<?php if ('BE' === TL_MODE): ?>
+
+    <?php if($this->tpfeatureboxtype == 'tpstandard'): ?>
+        <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
+        <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
+        <?= $this->tp_text; ?>
+    <?php endif; ?><!-- // Type Standard -->
+
+    <?php if($this->tpfeatureboxtype == 'tpicon'): ?>
+        <i class="<?= $this->tp_icon; ?>">Icon</i>
+        <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
+        <?= $this->tp_text; ?>
+    <?php endif; ?><!-- // Type Icon -->
+
+    <?php if($this->tpfeatureboxtype == 'tpimage'): ?>
+        <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
+        <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
+    <?php endif; ?><!-- // Type Image -->
+
+    <?php if($this->tpfeatureboxtype == 'tptext'): ?>
+        <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
+        <?= $this->tp_text; ?>
+    <?php endif; ?><!-- // Type Text -->
+
+<?php endif; ?>
+
+
+

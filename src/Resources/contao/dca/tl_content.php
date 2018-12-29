@@ -27,7 +27,7 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_featurebox'] = '{type_legend},t
  */
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tp_addImage'] = 'tp_singleSRC,tp_size';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpstandard'] = 'headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;{text_legend},tp_text;';
-$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpicon'] = 'tp_icon;{text_legend},tp_text;';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpicon'] = 'headline,tp_icon;{text_legend},tp_text;';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpimage'] = 'headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tptext'] = 'headline,tp_subHeadline;{text_legend},tp_text;';
 
