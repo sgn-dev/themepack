@@ -4,6 +4,7 @@ $GLOBALS['TL_CSS'][] = 'layout/css/styles.css|static';
 $GLOBALS['TL_CSS'][] = 'layout/vendor/css/swiper.css|static';
 $GLOBALS['TL_CSS'][] = 'layout/vendor/css/dark.css|static';
 $GLOBALS['TL_CSS'][] = 'layout/vendor/css/font-icons.css|static';
+$GLOBALS['TL_CSS'][] = 'layout/vendor/fontawesome/css/all.css|static';
 $GLOBALS['TL_CSS'][] = 'layout/vendor/css/animate.css|static';
 $GLOBALS['TL_CSS'][] = 'layout/vendor/css/magnific-popup.css|static';
 $GLOBALS['TL_CSS'][] = 'layout/vendor/css/responsive.css|static';
