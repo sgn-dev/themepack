@@ -20,6 +20,14 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['tp_headerbar'] = '
 {template_legend:hide},customTpl;
 {expert_legend:hide},guests,cssID,space';
 
+$GLOBALS['TL_DCA']['tl_module']['palettes']['tp_footerbar'] = '
+{title_legend},name,type;
+{include_legend},tp_includeModule;
+{config_legend},tp_showSocialMedia;
+{protected_legend:hide},protected;
+{template_legend:hide},customTpl;
+{expert_legend:hide},guests,cssID,space';
+
 /*
  * Fields
  */
@@ -51,4 +59,11 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['tp_includeModule'] = [
     'options_callback' => ['Sgn47gradnord\Themepack\Backend\Callback', 'getModule'],
     'eval' => ['mandatory' => true, 'includeBlankOption' => true, 'chosen' => true, 'tl_class' => 'w50'],
     'sql' => "varchar(64) NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['tp_showSocialMedia'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_module']['tp_showSocialMedia'],
+    'exclude' => true,
+    'inputType' => 'checkbox',
+    'sql' => "char(1) NOT NULL default ''",
 ];

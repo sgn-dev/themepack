@@ -1,0 +1,46 @@
+<footer id="footer" class="<?= $this->class; ?>">
+    <div id="copyrights">
+
+        <div class="container clearfix">
+
+            <div class="col_half">
+                Copyrights © <?= $this->currentYear; ?> <?= $this->rootPageTitle; ?>
+            </div>
+
+            <div class="col_half col_last tright">
+                <div class="fright clearfix">
+                    <?php if($this->tp_showSocialMedia == '1'): ?>
+                        <a href="#" class="social-icon si-small si-borderless si-facebook">
+                            <i class="icon-facebook"></i>
+                            <i class="icon-facebook"></i>
+                        </a>
+
+                        <a href="#" class="social-icon si-small si-borderless si-twitter">
+                            <i class="icon-twitter"></i>
+                            <i class="icon-twitter"></i>
+                        </a>
+
+                        <a href="#" class="social-icon si-small si-borderless si-pinterest">
+                            <i class="icon-pinterest"></i>
+                            <i class="icon-pinterest"></i>
+                        </a>
+
+                        <a href="#" class="social-icon si-small si-borderless si-linkedin">
+                            <i class="icon-linkedin"></i>
+                            <i class="icon-linkedin"></i>
+                        </a>
+                    <?php endif; ?>
+                </div>
+
+                <div class="clear"></div>
+
+                <divv class="servicenavigation">
+                    {{insert_module::<?= $this->tp_includeModule; ?>}}
+                </divv>
+
+            </div>
+
+        </div>
+
+    </div><!-- #copyrights end -->
+</footer>

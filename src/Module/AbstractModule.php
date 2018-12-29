@@ -13,6 +13,7 @@ namespace Sgn47gradnord\Themepack\Module;
 
 use Contao\BackendTemplate;
 use Contao\Module;
+use Contao\PageModel;
 
 abstract class AbstractModule extends Module
 {
@@ -32,5 +33,22 @@ abstract class AbstractModule extends Module
         $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
 
         return $objTemplate->parse();
+    }
+
+    /**
+     * @return string
+     */
+    protected function getRootPageTitle()
+    {
+        global $objPage;
+
+        $rootPage = PageModel::findOneBy('id', $objPage->rootId);
+
+        if(null === $rootPage)
+        {
+            return;
+        }
+
+        return $rootPage->title;
     }
 }
