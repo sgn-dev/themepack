@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @author     47GradNord - Agentur für Internetlösungen <info@47gradnord.de>
  */
 
-/**
+/*
  * Callbacks.
  */
 $GLOBALS['TL_DCA']['tl_content']['config']['onsubmit_callback'][] = ['Sgn47gradnord\Themepack\Backend\Callback', 'onsubmitCallbackTlContent'];
@@ -19,17 +19,17 @@ $GLOBALS['TL_DCA']['tl_content']['config']['onsubmit_callback'][] = ['Sgn47gradn
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_swiperslider_start'] = '{type_legend},type;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_swiperslider_item'] = '{type_legend},type;{image_legend},tp_singleSRC,tp_size;{slidercontent_legend},tp_sliderHeadline,tp_sliderContent;{forward_legend},urban_addButtonForward;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
-
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_container_start'] = '{type_legend},type;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
-
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_featurebox'] = '{type_legend},type;{featurebox_legend},tpfeatureboxtype;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 
 /*
  * Sub Palettes
  */
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tp_addImage'] = 'tp_singleSRC,tp_size';
-$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_standard'] = 'headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;{text_legend},tp_text;';
-$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_icon'] = 'tp_icon;{text_legend},tp_text;';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpstandard'] = 'headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;{text_legend},tp_text;';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpicon'] = 'tp_icon;{text_legend},tp_text;';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpimage'] = 'headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tptext'] = 'headline,tp_subHeadline;{text_legend},tp_text;';
 
 /*
  * Selectoren
@@ -121,13 +121,18 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tp_text'] = [
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['tpfeatureboxtype'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['tpfeatureboxtype'],
-    'default'                 => 'standard',
-    'exclude'                 => true,
-    'filter'                  => true,
-    'inputType'               => 'radio',
-    'options'                 => array('standard' => 'Standard', 'icon' => 'Icon'),
-    'eval'                    => array('submitOnChange'=>true, 'helpwizard'=>true),
-    'sql'                     => "varchar(12) NOT NULL default ''"
+    'default' => 'tpstandard',
+    'exclude' => true,
+    'filter' => true,
+    'inputType' => 'radio',
+    'options' => [
+        'tpstandard' => 'Standard',
+        'tpicon' => 'Icon',
+        'tpimage' => 'Bild',
+        'tptext' => 'Text'
+    ],
+    'eval' => ['submitOnChange' => true, 'helpwizard' => true],
+    'sql' => "varchar(12) NOT NULL default ''",
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['tp_icon'] = [
@@ -137,5 +142,3 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tp_icon'] = [
     'eval' => ['maxlength' => 200, 'tl_class' => 'w50 clr'],
     'sql' => "varchar(255) NOT NULL default ''",
 ];
-
-
