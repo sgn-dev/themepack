@@ -1,0 +1,19 @@
+<?php if ('FE' === TL_MODE): ?>
+    <div class="<?= $this->class; ?> <?= $this->tp_numberColumns; ?> <?php if($this->tp_lastColumn): ?>col_last<?php endif; ?>">
+        <?php if($this->headline): ?>
+            <div class="heading-block topmargin-sm">
+            <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
+            </div>
+        <?php endif; ?>
+        <?= $this->tp_text; ?>
+    </div>
+<?php endif; ?>
+
+<?php if ('BE' === TL_MODE): ?>
+    <?php if($this->headline): ?>
+        <div class="heading-block topmargin-sm">
+        <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
+        </div>
+    <?php endif; ?>
+    <?= $this->tp_text; ?>
+<?php endif; ?>
