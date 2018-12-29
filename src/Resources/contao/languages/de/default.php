@@ -38,3 +38,4 @@ $GLOBALS['TL_LANG']['CTE']['tp_swiperslider_stop'] = ['Ende', 'Swiper-Slider End
 $GLOBALS['TL_LANG']['FMD']['themepack'] = ['Themepack - Module'];
 $GLOBALS['TL_LANG']['FMD']['tp_headerbar'] = ['Header-Bar (Logo, Hauptnavigation)'];
 $GLOBALS['TL_LANG']['FMD']['tp_footerbar'] = ['Footer-Bar'];
+$GLOBALS['TL_LANG']['FMD']['tp_pagetitle'] = ['Seiten-Titel'];

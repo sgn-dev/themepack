@@ -1,0 +1,8 @@
+<section id="page-title">
+
+    <div class="container clearfix">
+        <h1><?= $this->pageTitle; ?></h1>
+        {{insert_module::<?= $this->tp_includeModule; ?>}}
+    </div>
+
+</section>

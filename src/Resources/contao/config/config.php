@@ -51,6 +51,7 @@ $GLOBALS['TL_WRAPPERS']['stop'][] = 'tp_section_stop';
 $GLOBALS['FE_MOD']['themepack'] = [
     'tp_headerbar' => 'Sgn47gradnord\Themepack\Module\Headerbar',
     'tp_footerbar' => 'Sgn47gradnord\Themepack\Module\Footerbar',
+    'tp_pagetitle' => 'Sgn47gradnord\Themepack\Module\Pagetitle',
 ];
 
 /*

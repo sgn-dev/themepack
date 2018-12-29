@@ -1,0 +1,12 @@
+<ol itemprop="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+    <?php foreach ($this->items as $position => $item): ?>
+        <?php if ($item['isActive']): ?>
+            <li class="breadcrumb-item active<?php if ($item['class']): ?> <?= $item['class'] ?><?php endif; ?> last">
+                <a href="<?= $item['href'] ?: './' ?>" title="<?= $item['title'] ?>" itemprop="item"><?= $item['link'] ?></a></li>
+        <?php else: ?>
+            <li<?php if ($item['class']): ?> class="breadcrumb-item <?= $item['class'] ?>"<?php endif; ?> itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+                <a href="<?= $item['href'] ?: './' ?>" title="<?= $item['title'] ?>" itemprop="item"><?= $item['link'] ?></a>
+                <meta itemprop="position" content="<?= $position + 1 ?>"></li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</ol>

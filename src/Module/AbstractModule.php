@@ -51,4 +51,14 @@ abstract class AbstractModule extends Module
 
         return $rootPage->title;
     }
+
+    /**
+     * @return string
+     */
+    protected function getPageTitle()
+    {
+        global $objPage;
+
+        return $objPage->title;
+    }
 }

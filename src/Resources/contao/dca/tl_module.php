@@ -28,6 +28,12 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['tp_footerbar'] = '
 {template_legend:hide},customTpl;
 {expert_legend:hide},guests,cssID,space';
 
+$GLOBALS['TL_DCA']['tl_module']['palettes']['tp_pagetitle'] = '
+{title_legend},name,type;
+{include_legend},tp_includeModule;
+{protected_legend:hide},protected;
+{template_legend:hide},customTpl;
+{expert_legend:hide},guests,cssID,space';
 /*
  * Fields
  */
