@@ -1,0 +1,9 @@
+<?php if ('FE' === TL_MODE): ?>
+    <div class="<?= $this->class; ?> <?= $this->tp_numberColumns; ?> <?php if($this->tp_lastColumn): ?>col_last<?php endif; ?>">
+        <img data-animate="fadeInLeft" src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>" class="fadeInLeft animated">
+    </div>
+<?php endif; ?>
+
+<?php if ('BE' === TL_MODE): ?>
+    <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
+<?php endif; ?>

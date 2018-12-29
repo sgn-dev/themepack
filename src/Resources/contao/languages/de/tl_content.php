@@ -17,6 +17,7 @@ $GLOBALS['TL_LANG']['tl_content']['column_legend'] = 'Spalten-Konfiguration';
 $GLOBALS['TL_LANG']['tl_content']['headline_legend'] = 'Überschriften';
 $GLOBALS['TL_LANG']['tl_content']['featurebox_legend'] = 'Art der Feature-Box';
 $GLOBALS['TL_LANG']['tl_content']['icon_legend'] = 'Icon';
+$GLOBALS['TL_LANG']['tl_content']['forward_legend'] = 'Weiterleitung';
 
 /*
  * Fields
@@ -32,3 +33,4 @@ $GLOBALS['TL_LANG']['tl_content']['tp_lastColumn'] = ['Letzte Spalte?', 'Aktivie
 $GLOBALS['TL_LANG']['tl_content']['tp_text'] = ['Text', 'Tragen Sie hier den gewünschten Text ein.'];
 $GLOBALS['TL_LANG']['tl_content']['tpfeatureboxtype'] = ['Art', 'Bitte wählen Sie die gewünschet Art aus.'];
 $GLOBALS['TL_LANG']['tl_content']['tp_icon'] = ['Icon', 'Bitte tragen Sie den Code des gewünschten Icons ein.'];
+$GLOBALS['TL_LANG']['tl_content']['tp_forward'] = ['Weiterleitung aktivieren', 'Aktivieren Sie diese Option um eine Weiterleitung einzurichten.'];

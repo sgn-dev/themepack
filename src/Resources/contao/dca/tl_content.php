@@ -21,7 +21,8 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_swiperslider_start'] = '{type_l
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_swiperslider_item'] = '{type_legend},type;{image_legend},tp_singleSRC,tp_size;{slidercontent_legend},tp_sliderHeadline,tp_sliderContent;{forward_legend},urban_addButtonForward;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_container_start'] = '{type_legend},type;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_featurebox'] = '{type_legend},type;{featurebox_legend},tpfeatureboxtype;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
-$GLOBALS['TL_DCA']['tl_content']['palettes']['tp_textbox'] = '{type_legend},type, headline;{text_legend},tp_text;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['tp_textbox'] = '{type_legend},type, headline;{text_legend},tp_text;{forward_legend},tp_forward;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['tp_imagebox'] = '{type_legend},type;{image_legend},tp_singleSRC,tp_size;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 
 /*
  * Sub Palettes
@@ -31,12 +32,15 @@ $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpstandard'] =
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpicon'] = 'headline,tp_icon;{text_legend},tp_text;';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpimage'] = 'headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tptext'] = 'headline,tp_subHeadline;{text_legend},tp_text;';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tp_forward'] = 'url,titleText';
+
 
 /*
  * Selectoren
  */
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'tp_addImage';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'tpfeatureboxtype';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'tp_forward';
 
 /*
  * Fields
@@ -142,4 +146,12 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tp_icon'] = [
     'inputType' => 'text',
     'eval' => ['maxlength' => 200, 'tl_class' => 'w50 clr'],
     'sql' => "varchar(255) NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['tp_forward'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_forward'],
+    'exclude' => true,
+    'inputType' => 'checkbox',
+    'eval' => ['submitOnChange' => true],
+    'sql' => "char(1) NOT NULL default ''",
 ];

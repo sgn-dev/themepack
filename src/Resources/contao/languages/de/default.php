@@ -25,6 +25,7 @@ $GLOBALS['TL_LANG']['CTE']['tp_swiperslider_item'] = ['Element', 'Swiper-Slider 
 $GLOBALS['TL_LANG']['CTE']['tp_swiperslider_stop'] = ['Ende', 'Swiper-Slider Ende'];
 $GLOBALS['TL_LANG']['CTE']['tp_featurebox'] = ['Feature-Box', 'Fügt das Element ein'];
 $GLOBALS['TL_LANG']['CTE']['tp_textbox'] = ['Text-Box', 'Fügt das Element ein'];
+$GLOBALS['TL_LANG']['CTE']['tp_imagebox'] = ['Bild-Box', 'Fügt das Element ein'];
 
 /*
  * Frontend Modules
