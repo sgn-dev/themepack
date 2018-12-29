@@ -1,0 +1,23 @@
+<?php if ('FE' === TL_MODE): ?>
+    <div class="section parallax dark nomargin noborder" style="padding: 150px 0; background-image: url('<?= $this->tp_src; ?>'); background-size: cover" data-bottom-top="background-position:0px 300px;" data-top-bottom="background-position:0px -300px;">
+        <div class="container center clearfix">
+
+            <div class="emphasis-title">
+                <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
+            <p class="lead topmargin-sm"><?= $this->tp_subHeadline; ?></p>
+        </div>
+
+        <?php if($this->tp_forward): ?>
+            <a href="<?= $this->url; ?>" class="button button-rounded button-white button-light button-large"><?= $this->titleText; ?></a>
+        <?php endif; ?>
+
+    </div></div>
+<?php endif; ?>
+
+<?php if ('BE' === TL_MODE): ?>
+    <?php if($this->headline): ?>
+        <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
+    <?php endif; ?>
+    <p><?= $this->tp_subHeadline; ?></p>
+    <img src="<?= $this->tp_src; ?>">
+<?php endif; ?>

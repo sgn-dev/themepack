@@ -25,6 +25,7 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_featurebox'] = '{type_legend},t
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_textbox'] = '{type_legend},type, headline;{text_legend},tp_text;{forward_legend},tp_forward;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_imagebox'] = '{type_legend},type;{image_legend},tp_singleSRC,tp_size;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_gallerybox'] = '{type_legend},type,headline;{source_legend},multiSRC,sortBy;{image_legend},tp_size;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['tp_parallaxbox'] = '{type_legend},type,headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;{forward_legend},tp_forward;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 
 /*
  * Sub Palettes

@@ -21,6 +21,7 @@ $GLOBALS['TL_CTE']['themepack-elements'] = [
     'tp_textbox' => 'Sgn47gradnord\Themepack\Element\Textbox',
     'tp_imagebox' => 'Sgn47gradnord\Themepack\Element\Imagebox',
     'tp_gallerybox' => 'Sgn47gradnord\Themepack\Element\Gallerybox',
+    'tp_parallaxbox' => 'Sgn47gradnord\Themepack\Element\Parallaxbox',
 ];
 
 /*
