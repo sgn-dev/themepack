@@ -1,0 +1,3 @@
+<?php if ('FE' === TL_MODE): ?>
+<div class="section <?= $this->class; ?> clearfix">
+<?php endif; ?>
