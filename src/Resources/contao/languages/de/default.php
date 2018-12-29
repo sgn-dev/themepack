@@ -20,6 +20,7 @@ $GLOBALS['TL_LANG']['CTE']['tp_section_stop'] = ['Sektion Stop', 'Sektion Stop']
 $GLOBALS['TL_LANG']['CTE']['tp_featurebox'] = ['Feature-Box', 'Fügt das Element ein'];
 $GLOBALS['TL_LANG']['CTE']['tp_textbox'] = ['Text-Box', 'Fügt das Element ein'];
 $GLOBALS['TL_LANG']['CTE']['tp_imagebox'] = ['Bild-Box', 'Fügt das Element ein'];
+$GLOBALS['TL_LANG']['CTE']['tp_gallerybox'] = ['Galerie-Box', 'Fügt das Element ein'];
 
 /*
  * Swiper Slider

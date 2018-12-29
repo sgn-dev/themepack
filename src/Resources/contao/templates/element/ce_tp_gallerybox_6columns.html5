@@ -1,0 +1,27 @@
+<?php if ('FE' === TL_MODE): ?>
+    <div class="col_full clearfix">
+
+    <?php if($this->headline): ?>
+        <div class="heading-block topmargin-sm">
+        <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
+        </div>
+    <?php endif; ?>
+
+    <div class="masonry-thumbs grid-6" data-big="3" data-lightbox="gallery">
+        <?php foreach($this->images as $image): ?>
+            <a href="<?= $image->singleSRC; ?>" data-lightbox="gallery-item"><img class="image_fade" src="<?= $image->picture['img']['src']; ?>" alt="<?= $image->alt; ?>"></a>
+        <?php endforeach; ?>
+    </div>
+    </div>
+<?php endif; ?>
+
+<?php if ('BE' === TL_MODE): ?>
+    <?php if($this->headline): ?>
+        <div class="heading-block topmargin-sm">
+        <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
+        </div>
+    <?php endif; ?>
+    <?php foreach($this->images as $image): ?>
+        <img src="<?= $image->picture['img']['src']; ?>" alt="<?= $image->alt; ?>">
+    <?php endforeach; ?>
+<?php endif; ?>
