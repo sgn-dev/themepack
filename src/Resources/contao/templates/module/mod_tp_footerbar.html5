@@ -34,9 +34,8 @@
 
                 <div class="clear"></div>
 
-                <divv class="servicenavigation">
-                    {{insert_module::<?= $this->tp_includeModule; ?>}}
-                </divv>
+                <div class="fright servicenavigation">{{insert_module::<?= $this->tp_includeModule; ?>}}</div>
+                <div class="clear"></div>
 
             </div>
 
