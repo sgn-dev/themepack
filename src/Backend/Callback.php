@@ -84,5 +84,41 @@ class Callback
                     ->execute();
             }
         }
+
+        // Element Section
+        if ('tp_section_start' === $activeRecord->type) {
+            // Find the next columns or column element
+            $nextElement = \Database::getInstance()
+                ->prepare('
+					SELECT type
+					FROM tl_content
+					WHERE pid = ?
+						AND (ptable = ? OR ptable = ?)
+						AND type IN (\'tp_section_stop\')
+						AND sorting > ?
+					ORDER BY sorting ASC
+					LIMIT 1
+				')
+                ->execute(
+                    $activeRecord->pid,
+                    $activeRecord->ptable ?: 'tl_article',
+                    'tl_article' === $activeRecord->ptable ? '' : $activeRecord->ptable,
+                    $activeRecord->sorting
+                );
+
+            // Check if a stop element should be created
+            if (!$nextElement->type) {
+                \Database::getInstance()
+                    ->prepare('INSERT INTO tl_content %s')
+                    ->set([
+                        'pid' => $activeRecord->pid,
+                        'ptable' => $activeRecord->ptable ?: 'tl_article',
+                        'type' => 'tp_section_stop',
+                        'sorting' => $activeRecord->sorting + 1,
+                        'tstamp' => time(),
+                    ])
+                    ->execute();
+            }
+        }
     }
 }

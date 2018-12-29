@@ -15,6 +15,8 @@ declare(strict_types=1);
 $GLOBALS['TL_CTE']['themepack-elements'] = [
     'tp_container_start' => 'Sgn47gradnord\Themepack\Element\ContainerStart',
     'tp_container_stop' => 'Sgn47gradnord\Themepack\Element\ContainerStop',
+    'tp_section_start' => 'Sgn47gradnord\Themepack\Element\SectionStart',
+    'tp_section_stop' => 'Sgn47gradnord\Themepack\Element\SectionStop',
     'tp_featurebox' => 'Sgn47gradnord\Themepack\Element\Featurebox',
     'tp_textbox' => 'Sgn47gradnord\Themepack\Element\Textbox',
     'tp_imagebox' => 'Sgn47gradnord\Themepack\Element\Imagebox',
@@ -37,6 +39,9 @@ $GLOBALS['TL_WRAPPERS']['stop'][] = 'tp_swiperslider_stop';
 
 $GLOBALS['TL_WRAPPERS']['start'][] = 'tp_container_start';
 $GLOBALS['TL_WRAPPERS']['stop'][] = 'tp_container_stop';
+
+$GLOBALS['TL_WRAPPERS']['start'][] = 'tp_section_start';
+$GLOBALS['TL_WRAPPERS']['stop'][] = 'tp_section_stop';
 
 /*
  * Frontend Modules

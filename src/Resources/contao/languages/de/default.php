@@ -15,6 +15,11 @@ declare(strict_types=1);
 $GLOBALS['TL_LANG']['CTE']['themepack-elements'] = 'Themepack - Elemente';
 $GLOBALS['TL_LANG']['CTE']['tp_container_start'] = ['Container Start', 'Container Start'];
 $GLOBALS['TL_LANG']['CTE']['tp_container_stop'] = ['Container Stop', 'Container Stop'];
+$GLOBALS['TL_LANG']['CTE']['tp_section_start'] = ['Sektion Start', 'Sektion Start'];
+$GLOBALS['TL_LANG']['CTE']['tp_section_stop'] = ['Sektion Stop', 'Sektion Stop'];
+$GLOBALS['TL_LANG']['CTE']['tp_featurebox'] = ['Feature-Box', 'Fügt das Element ein'];
+$GLOBALS['TL_LANG']['CTE']['tp_textbox'] = ['Text-Box', 'Fügt das Element ein'];
+$GLOBALS['TL_LANG']['CTE']['tp_imagebox'] = ['Bild-Box', 'Fügt das Element ein'];
 
 /*
  * Swiper Slider
@@ -23,9 +28,7 @@ $GLOBALS['TL_LANG']['CTE']['themepack-swiperslider'] = 'Themepack - Swiper Slide
 $GLOBALS['TL_LANG']['CTE']['tp_swiperslider_start'] = ['Start', 'Swiper-Slider Start'];
 $GLOBALS['TL_LANG']['CTE']['tp_swiperslider_item'] = ['Element', 'Swiper-Slider Element'];
 $GLOBALS['TL_LANG']['CTE']['tp_swiperslider_stop'] = ['Ende', 'Swiper-Slider Ende'];
-$GLOBALS['TL_LANG']['CTE']['tp_featurebox'] = ['Feature-Box', 'Fügt das Element ein'];
-$GLOBALS['TL_LANG']['CTE']['tp_textbox'] = ['Text-Box', 'Fügt das Element ein'];
-$GLOBALS['TL_LANG']['CTE']['tp_imagebox'] = ['Bild-Box', 'Fügt das Element ein'];
+
 
 /*
  * Frontend Modules
