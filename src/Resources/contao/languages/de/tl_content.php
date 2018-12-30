@@ -34,3 +34,4 @@ $GLOBALS['TL_LANG']['tl_content']['tp_text'] = ['Text', 'Tragen Sie hier den gew
 $GLOBALS['TL_LANG']['tl_content']['tpfeatureboxtype'] = ['Art', 'Bitte wählen Sie die gewünschet Art aus.'];
 $GLOBALS['TL_LANG']['tl_content']['tp_icon'] = ['Icon', 'Bitte tragen Sie den Code des gewünschten Icons ein.'];
 $GLOBALS['TL_LANG']['tl_content']['tp_forward'] = ['Weiterleitung aktivieren', 'Aktivieren Sie diese Option um eine Weiterleitung einzurichten.'];
+$GLOBALS['TL_LANG']['tl_content']['tp_dividerButtonText'] = ['Beschriftung Button', 'Tragen Sie hier bitte die entsprechende Beschreibung ein.'];

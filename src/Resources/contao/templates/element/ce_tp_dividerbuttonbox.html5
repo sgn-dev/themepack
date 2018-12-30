@@ -1,0 +1,25 @@
+<?php if ('FE' === TL_MODE): ?>
+
+    <?php if($this->tp_forward == '1'): ?>
+    <a href="<?= $this->url; ?>" class="button button-full center <?= $this->class; ?>">
+        <div class="container clearfix">
+            <?= $this->tp_dividerButtonText; ?> <strong><?= $this->titleText; ?></strong> <i class="icon-caret-right" style="top:4px;"></i>
+        </div>
+    </a>
+    <?php endif; ?>
+
+    <?php if($this->tp_forward != '1'): ?>
+    <a href="" class="button button-full center <?= $this->class; ?>">
+        <div class="container clearfix">
+            <?= $this->tp_dividerButtonText; ?>
+        </div>
+    </a>
+    <?php endif; ?>
+
+    <div class="cl"
+
+<?php endif; ?>
+
+<?php if ('BE' === TL_MODE): ?>
+    <?= $this->tp_dividerButtonText; ?>
+<?php endif; ?>
