@@ -1,3 +1,4 @@
 <?php if ('FE' === TL_MODE): ?>
-<div class="container <?= $this->class; ?> clearfix">
+<div <?= $this->cssID; ?> class="container <?= $this->class; ?> clearfix">
+
 <?php endif; ?>

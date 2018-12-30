@@ -20,12 +20,10 @@ class Callback
     /**
      * @return array|void
      */
-    public function getModule()
+    public function getModule(DataContainer $dataContainer)
     {
-        $choises = [];
-
         /** @var Collection $results */
-        $results = ModuleModel::findAll();
+        $results = ModuleModel::findByPid($dataContainer->activeRecord->pid);
 
         if (null === $results) {
             return;

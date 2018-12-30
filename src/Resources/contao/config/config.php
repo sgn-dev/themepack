@@ -23,6 +23,7 @@ $GLOBALS['TL_CTE']['themepack-elements'] = [
     'tp_gallerybox' => 'Sgn47gradnord\Themepack\Element\Gallerybox',
     'tp_parallaxbox' => 'Sgn47gradnord\Themepack\Element\Parallaxbox',
     'tp_dividerbuttonbox' => 'Sgn47gradnord\Themepack\Element\Dividerbuttonbox',
+    'tp_headlinebox' => 'Sgn47gradnord\Themepack\Element\Headlinebox',
 ];
 
 /*
