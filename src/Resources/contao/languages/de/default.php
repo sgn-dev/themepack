@@ -24,6 +24,7 @@ $GLOBALS['TL_LANG']['CTE']['tp_gallerybox'] = ['Galerie-Box', 'Fügt das Element
 $GLOBALS['TL_LANG']['CTE']['tp_parallaxbox'] = ['Paralax-Efekt-Box', 'Fügt das Element ein'];
 $GLOBALS['TL_LANG']['CTE']['tp_dividerbuttonbox'] = ['Button / Trennelement', 'Fügt das Element ein'];
 $GLOBALS['TL_LANG']['CTE']['tp_headlinebox'] = ['Überschrift', 'Fügt das Element ein'];
+$GLOBALS['TL_LANG']['CTE']['tp_pagetitleparallax'] = ['Seitentitel (Parallax)', 'Fügt das Element ein'];
 
 /*
  * Swiper Slider

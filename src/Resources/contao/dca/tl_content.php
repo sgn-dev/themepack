@@ -28,6 +28,7 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_gallerybox'] = '{type_legend},t
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_parallaxbox'] = '{type_legend},type,headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;{forward_legend},tp_forward;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_dividerbuttonbox'] = '{type_legend},type;{text_legend},tp_dividerButtonText;{forward_legend},tp_forward;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_headlinebox'] = '{type_legend},type,headline,tp_subHeadline;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['tp_pagetitleparallax'] = '{type_legend},type,headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;{include_legend},tp_includeModule;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 
 /*
  * Sub Palettes
@@ -167,4 +168,12 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tp_dividerButtonText'] = [
     'inputType' => 'text',
     'eval' => ['maxlength' => 200, 'tl_class' => 'w50 clr'],
     'sql' => "varchar(255) NOT NULL default ''",
+];
+$GLOBALS['TL_DCA']['tl_content']['fields']['tp_includeModule'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_includeModule'],
+    'exclude' => true,
+    'inputType' => 'select',
+    'options_callback' => ['Sgn47gradnord\Themepack\Backend\Callback', 'getModuleForContentElement'],
+    'eval' => ['mandatory' => true, 'includeBlankOption' => true, 'chosen' => true, 'tl_class' => 'w50'],
+    'sql' => "varchar(64) NOT NULL default ''",
 ];

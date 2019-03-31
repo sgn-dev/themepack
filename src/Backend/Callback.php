@@ -11,9 +11,12 @@ declare(strict_types=1);
 
 namespace Sgn47gradnord\Themepack\Backend;
 
+use Contao\ArticleModel;
+use Contao\Database;
 use Contao\DataContainer;
 use Contao\Model\Collection;
 use Contao\ModuleModel;
+use Contao\PageModel;
 
 class Callback
 {
@@ -22,8 +25,38 @@ class Callback
      */
     public function getModule(DataContainer $dataContainer)
     {
+
         /** @var Collection $results */
         $results = ModuleModel::findByPid($dataContainer->activeRecord->pid);
+
+        if (null === $results) {
+            return;
+        }
+
+        /** @var ModuleModel $result */
+        foreach ($results as $result) {
+            $choises[$result->id] = $result->name;
+        }
+
+        return $choises;
+    }
+
+    protected function getRekursivePages(\PageModel $pageModel)
+    {
+        $parentPage = PageModel::findOneBy('id', $pageModel->pid);
+
+        if("0" === $parentPage->pid)
+        {
+            return $pageModel;
+        }
+
+        return $this->getRekursivePages($pageModel);
+    }
+
+    public function getModuleForContentElement(DataContainer $dataContainer)
+    {
+        /** @var Collection $results */
+        $results = ModuleModel::findAll();
 
         if (null === $results) {
             return;
