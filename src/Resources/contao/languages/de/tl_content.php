@@ -18,6 +18,7 @@ $GLOBALS['TL_LANG']['tl_content']['headline_legend'] = 'Überschriften';
 $GLOBALS['TL_LANG']['tl_content']['featurebox_legend'] = 'Art der Feature-Box';
 $GLOBALS['TL_LANG']['tl_content']['icon_legend'] = 'Icon';
 $GLOBALS['TL_LANG']['tl_content']['forward_legend'] = 'Weiterleitung';
+$GLOBALS['TL_LANG']['tl_content']['include_legend'] = 'Inkludieren';
 
 /*
  * Fields
@@ -35,3 +36,4 @@ $GLOBALS['TL_LANG']['tl_content']['tpfeatureboxtype'] = ['Art', 'Bitte wählen S
 $GLOBALS['TL_LANG']['tl_content']['tp_icon'] = ['Icon', 'Bitte tragen Sie den Code des gewünschten Icons ein.'];
 $GLOBALS['TL_LANG']['tl_content']['tp_forward'] = ['Weiterleitung aktivieren', 'Aktivieren Sie diese Option um eine Weiterleitung einzurichten.'];
 $GLOBALS['TL_LANG']['tl_content']['tp_dividerButtonText'] = ['Beschriftung Button', 'Tragen Sie hier bitte die entsprechende Beschreibung ein.'];
+$GLOBALS['TL_LANG']['tl_content']['tp_includeModule'] = ['Modul inkludieren', 'Wählen Sie das passende Modul aus.'];

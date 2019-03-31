@@ -30,6 +30,7 @@
                 </div>
                 <div class="fbox-desc">
                     <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
+                    <?= $this->tp_text; ?>
                 </div>
             </div>
         <?php endif; ?><!-- // Type Image -->
@@ -63,6 +64,7 @@
     <?php if($this->tpfeatureboxtype == 'tpimage'): ?>
         <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
         <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
+        <?= $this->tp_text; ?>
     <?php endif; ?><!-- // Type Image -->
 
     <?php if($this->tpfeatureboxtype == 'tptext'): ?>
