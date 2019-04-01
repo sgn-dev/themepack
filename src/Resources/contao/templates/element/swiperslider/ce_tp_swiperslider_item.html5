@@ -1,5 +1,5 @@
 <?php if ('FE' === TL_MODE): ?>
-    <div class="swiper-slide dark" style="background-image: url('<?= $this->tp_src; ?>');">
+    <div class="swiper-slide <?= $this->class; ?>" style="background-image: url('<?= $this->tp_src; ?>');">
         <div class="container clearfix">
             <div class="slider-caption <?= $this->class; ?>">
                 <h2 data-animate="fadeInUp"><?= $this->tp_sliderHeadline; ?></h2>

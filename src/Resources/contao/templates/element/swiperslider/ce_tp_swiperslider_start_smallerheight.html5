@@ -1,5 +1,5 @@
 <?php if ('FE' === TL_MODE): ?>
-<section id="slider_<?= $this->id; ?>" class="slider-element slider-parallax swiper_wrapper clearfix">
+<section id="slider" class="slider-element slider-parallax swiper_wrapper clearfix">
     <div class="slider-parallax-inner">
         <div class="swiper-container swiper-parent">
             <div class="swiper-wrapper">
