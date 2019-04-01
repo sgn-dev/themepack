@@ -16,8 +16,6 @@
     </a>
     <?php endif; ?>
 
-    <div class="cl"
-
 <?php endif; ?>
 
 <?php if ('BE' === TL_MODE): ?>
