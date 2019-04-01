@@ -1,0 +1,43 @@
+<?php if ('FE' === TL_MODE): ?>
+<div class="<?= $this->class; ?> <?= $this->tp_numberColumns; ?> <?php if($this->tp_lastColumn): ?>col_last<?php endif; ?>">
+    <?php if($this->headline): ?>
+        <div class="heading-block topmargin-sm">
+        <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
+        <?php if($this->tp_subHeadline): ?><span><?= $this->tp_subHeadline; ?></span><?php endif; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if($this->tp_range_imagefirst === '1'): ?>
+
+        <img data-animate="fadeInLeft" src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>" class="fadeInLeft animated img-fluid img-margin-bottom">
+
+        <?= $this->tp_text; ?>
+        <?php if($this->tp_forward): ?>
+            <a href="<?= $this->url; ?>" class="button button-border button-dark button-rounded button-large noleftmargin topmargin-sm"><?= $this->titleText; ?></a>
+        <?php endif; ?>
+
+
+    <?php endif; ?><!-- Display Image First -->
+
+    <?php if($this->tp_range_imagefirst === ''): ?>
+
+        <?= $this->tp_text; ?>
+        <?php if($this->tp_forward): ?>
+            <a href="<?= $this->url; ?>" class="button button-border button-dark button-rounded button-large noleftmargin topmargin-sm"><?= $this->titleText; ?></a>
+        <?php endif; ?>
+
+        <img data-animate="fadeInLeft" src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>" class="fadeInLeft animated img-fluid img-margin-top">
+
+    <?php endif; ?><!-- Display Text First -->
+
+    </div>
+<?php endif; ?>
+
+<?php if ('BE' === TL_MODE): ?>
+    <?php if($this->headline): ?>
+        <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
+        <?php if($this->tp_subHeadline): ?><span><?= $this->tp_subHeadline; ?></span><?php endif; ?>
+    <?php endif; ?>
+    <?= $this->tp_text; ?>
+    <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
+<?php endif; ?>
