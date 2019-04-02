@@ -24,6 +24,7 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_section_start'] = '{type_legend
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_featurebox'] = '{type_legend},type;{featurebox_legend},tpfeatureboxtype;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_textbox'] = '{type_legend},type, headline;{text_legend},tp_text;{forward_legend},tp_forward;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_imagebox'] = '{type_legend},type;{image_legend},tp_singleSRC,tp_size;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['tp_textimagebox'] = '{type_legend},type,headline,tp_subHeadline;{text_legend},tp_text;{image_legend},tp_singleSRC,tp_size;{config_legend},tp_range_imagefirst;{column_legend},tp_numberColumns,tp_lastColumn;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_gallerybox'] = '{type_legend},type,headline;{source_legend},multiSRC,sortBy;{image_legend},tp_size;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_parallaxbox'] = '{type_legend},type,headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;{forward_legend},tp_forward;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_dividerbuttonbox'] = '{type_legend},type;{text_legend},tp_dividerButtonText;{forward_legend},tp_forward;{expert_legend:hide},guests,cssID,space;{template_legend:hide},customTpl;{invisible_legend:hide},invisible';
@@ -176,4 +177,10 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tp_includeModule'] = [
     'options_callback' => ['Sgn47gradnord\Themepack\Backend\Callback', 'getModuleForContentElement'],
     'eval' => ['mandatory' => true, 'includeBlankOption' => true, 'chosen' => true, 'tl_class' => 'w50'],
     'sql' => "varchar(64) NOT NULL default ''",
+];
+$GLOBALS['TL_DCA']['tl_content']['fields']['tp_range_imagefirst'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_range_imagefirst'],
+    'exclude' => true,
+    'inputType' => 'checkbox',
+    'sql' => "char(1) NOT NULL default ''",
 ];

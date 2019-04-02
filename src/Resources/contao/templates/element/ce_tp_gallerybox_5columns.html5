@@ -1,5 +1,5 @@
 <?php if ('FE' === TL_MODE): ?>
-    <div class="col_full clearfix">
+    <div class="col_full clearfix <?= $this->class; ?>">
 
     <?php if($this->headline): ?>
         <div class="heading-block topmargin-sm">
