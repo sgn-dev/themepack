@@ -1,5 +1,5 @@
 <?php if ('FE' === TL_MODE): ?>
-<div class="<?= $this->tp_numberColumns; ?> <?php if($this->tp_lastColumn): ?>col_last<?php endif; ?>">
+<div class="<?= $this->tp_numberColumns; ?> <?= $this->class; ?> <?php if($this->tp_lastColumn): ?>col_last<?php endif; ?>">
 
     <?php if($this->tpfeatureboxtype == 'tpstandard'): ?>
         <div class="feature-box media-box">
