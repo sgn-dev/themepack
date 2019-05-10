@@ -9,6 +9,9 @@
                 <div class="fbox-desc">
                     <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
                 <?= $this->tp_text; ?>
+                <?php if($this->tp_forward): ?>
+                    <a href="<?= $this->url; ?>" class="button button-border button-dark button-rounded button-large noleftmargin topmargin-sm"><?= $this->titleText; ?></a>
+                <?php endif; ?>
                 </div>
             </div>
         <?php endif; ?><!-- // Type Standard -->
@@ -20,6 +23,9 @@
                 </div>
                 <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
                 <?= $this->tp_text; ?>
+                <?php if($this->tp_forward): ?>
+                    <a href="<?= $this->url; ?>" class="button button-border button-dark button-rounded button-large noleftmargin topmargin-sm"><?= $this->titleText; ?></a>
+                <?php endif; ?>
             </div>
         <?php endif; ?><!-- // Type Icon -->
 
@@ -31,6 +37,9 @@
                 <div class="fbox-desc">
                     <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
                     <?= $this->tp_text; ?>
+                    <?php if($this->tp_forward): ?>
+                        <a href="<?= $this->url; ?>" class="button button-border button-dark button-rounded button-large noleftmargin topmargin-sm"><?= $this->titleText; ?></a>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endif; ?><!-- // Type Image -->
@@ -40,6 +49,9 @@
                 <div class="fbox-desc">
                     <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
                 <?= $this->tp_text; ?>
+                <?php if($this->tp_forward): ?>
+                    <a href="<?= $this->url; ?>" class="button button-border button-dark button-rounded button-large noleftmargin topmargin-sm"><?= $this->titleText; ?></a>
+                <?php endif; ?>
                 </div>
             </div>
         <?php endif; ?><!-- // Type Text -->
