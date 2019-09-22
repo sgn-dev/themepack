@@ -32,5 +32,15 @@ class Item extends AbstractElement
             $this->tp_singleSRC = $objModel->path;
             ContaoHelper::addImageToTemplate($this->Template, $this->arrData, null, null, $objModel);
         }
+
+        if(null !== $this->tp_vidSrcMp4)
+        {
+            $this->tp_vidSrcMp4 = $this->addFilePathToTemplate($this->tp_vidSrcMp4, $this->Template, 'tp_vidSrcMp4' );
+        }
+
+        if(null !== $this->tp_vidSrcWebM)
+        {
+            $this->tp_vidSrcWebM = $this->addFilePathToTemplate($this->tp_vidSrcWebM, $this->Template, 'tp_vidSrcWebM');
+        }
     }
 }

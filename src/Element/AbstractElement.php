@@ -12,7 +12,22 @@ declare(strict_types=1);
 namespace Sgn47gradnord\Themepack\Element;
 
 use Contao\ContentElement;
+use Contao\FilesModel;
+use Contao\FrontendTemplate;
 
 abstract class AbstractElement extends ContentElement
 {
+
+    protected function addFilePathToTemplate(string $uuid, FrontendTemplate $template, string $parameter)
+    {
+        /** @var FilesModel $model */
+        $model = FilesModel::findByUuid($uuid);
+
+        if(null === $model)
+        {
+            return null;
+        }
+
+        $template->$parameter = $model->path;
+    }
 }
