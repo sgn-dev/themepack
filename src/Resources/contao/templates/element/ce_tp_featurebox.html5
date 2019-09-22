@@ -1,5 +1,5 @@
 <?php if ('FE' === TL_MODE): ?>
-    <div class="<?= $this->tp_numberColumns; ?> <?= $this->class; ?> <?php if($this->tp_lastColumn): ?>col_last<?php endif; ?>">
+    <div class="<?= $this->tp_numberColumns; ?> <?= $this->class; ?> <?php if($this->tp_lastColumn): ?>col_last<?php endif; ?> <?php $this->class; ?>">
 
         <?php if($this->tpfeatureboxtype == 'tpstandard'): ?>
             <div class="feature-box media-box">
@@ -56,12 +56,29 @@
             </div>
         <?php endif; ?><!-- // Type Text -->
 
+        <?php if($this->tpfeatureboxtype == 'tpboxforward'): ?>
+            <a href="<?= $this->tp_jumpTo; ?>" title="<?= $this->titleText; ?>">
+                <div class="feature-box media-box">
+                    <div class="fbox-media">
+                        <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
+                    </div>
+                    <div class="fbox-desc">
+                        <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
+                    <?= $this->tp_text; ?>
+                    <?php if($this->tp_forward): ?>
+                        <a href="<?= $this->url; ?>" class="button button-border button-dark button-rounded button-large noleftmargin topmargin-sm"><?= $this->titleText; ?></a>
+                    <?php endif; ?>
+                </div>
+                </div>
+            </a>
+        <?php endif; ?><!-- // Type Standard as complete Forward-->
+
     </div>
 <?php endif; ?>
 
 <?php if ('BE' === TL_MODE): ?>
 
-    <?php if($this->tpfeatureboxtype == 'tpstandard'): ?>
+    <?php if($this->tpfeatureboxtype == 'tpstandard' OR $this->tpfeatureboxtype == 'tpboxforward'): ?>
         <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
         <<?= $this->hl; ?>><?= $this->headline; ?><?php if($this->tp_subHeadline): ?><span class="subtitle"><?= $this->tp_subHeadline; ?></span><?php endif; ?></<?= $this->hl; ?>>
         <?= $this->tp_text; ?>

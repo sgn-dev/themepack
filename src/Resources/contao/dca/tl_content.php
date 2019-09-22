@@ -36,6 +36,7 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['tp_pagetitleparallax'] = '{type_le
  */
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tp_addImage'] = 'tp_singleSRC,tp_size';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpstandard'] = 'headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;{text_legend},tp_text;';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpboxforward'] = 'headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;{text_legend},tp_text;{boxforward_legend},tp_jumpTo,titleText;';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpicon'] = 'headline,tp_icon;{text_legend},tp_text;';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpimage'] = 'headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;{text_legend},tp_text;';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tptext'] = 'headline,tp_subHeadline;{text_legend},tp_text;';
@@ -144,7 +145,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tpfeatureboxtype'] = [
         'tpstandard' => 'Standard',
         'tpicon' => 'Icon',
         'tpimage' => 'Bild',
-        'tptext' => 'Text'
+        'tptext' => 'Text',
+        'tpboxforward' => 'Standard (Box Forward)'
     ],
     'eval' => ['submitOnChange' => true, 'helpwizard' => true],
     'sql' => "varchar(12) NOT NULL default ''",
@@ -214,3 +216,14 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tp_vidSrcWebM'] = [
     'eval' => ['extensions' => 'webm', 'filesOnly' => true, 'fieldType' => 'radio', 'mandatory' => true, 'tl_class' => 'clr'],
     'sql' => 'binary(16) NULL',
 ];
+$GLOBALS['TL_DCA']['tl_content']['fields']['tp_jumpTo'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['tp_jumpTo'],
+    'exclude'                 => true,
+    'inputType'               => 'pageTree',
+    'foreignKey'              => 'tl_page.title',
+    'eval'                    => array('fieldType'=>'radio'),
+    'sql'                     => "int(10) unsigned NOT NULL default '0'",
+    'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
+];
+
+

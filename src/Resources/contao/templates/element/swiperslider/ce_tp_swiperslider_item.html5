@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="video-wrap">
-                <video id="slide-video" poster="" preload="auto" loop autoplay muted>
+                <video id="slide-video" poster="<?= $this->tp_src; ?>" preload="auto" loop autoplay muted>
                     <source src='<?= $this->tp_vidSrcMp4; ?>' type='video/mp4' />
                     <source src='<?= $this->tp_vidSrcWebM; ?>' type='video/webm' />
                 </video>
