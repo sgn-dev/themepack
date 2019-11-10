@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Sgn47gradnord\Themepack\Element\SwiperSlider;
 
+use Contao\ContentModel;
 use Sgn47gradnord\Themepack\Element\AbstractElement;
 
 class Stop extends AbstractElement
@@ -20,11 +21,23 @@ class Stop extends AbstractElement
      */
     protected $strTemplate = 'ce_tp_swiperslider_stop';
 
+    private $showNavigation = false;
+
     /**
      * Compile the Element.
      */
     protected function compile()
     {
-        // TODO: Implement compile() method.
+        $items = ContentModel::findBy(['type=? AND pid=? AND invisible =?'], ['tp_swiperslider_item', $this->pid, '']);
+
+        if(null !== $items)
+        {
+            if(count($items) > 1)
+            {
+                $this->showNavigation = true;
+            }
+
+        }
+        $this->Template->showNavigation = $this->showNavigation;
     }
 }
