@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Sgn47gradnord\Themepack\Element;
 
 use Contao\FilesModel;
+use Contao\PageModel;
 use Contao\StringUtil;
 use Sgn47gradnord\Themepack\ContaoHelper;
 
@@ -33,6 +34,10 @@ class Featurebox extends AbstractElement
         if (null !== $objModel && is_file(TL_ROOT . '/' . $objModel->path)) {
             $this->tp_singleSRC = $objModel->path;
             ContaoHelper::addImageToTemplate($this->Template, $this->arrData, null, null, $objModel);
+        }
+
+        if($this->tp_jumpTo) {
+            $this->Template->tp_jumpTo = PageModel::findOneBy('id', $this->tp_jumpTo)->getFrontendUrl();
         }
     }
 }

@@ -20,6 +20,8 @@ $GLOBALS['TL_LANG']['tl_content']['icon_legend'] = 'Icon';
 $GLOBALS['TL_LANG']['tl_content']['forward_legend'] = 'Weiterleitung';
 $GLOBALS['TL_LANG']['tl_content']['include_legend'] = 'Inkludieren';
 $GLOBALS['TL_LANG']['tl_content']['config_legend'] = 'Konfigurieren';
+$GLOBALS['TL_LANG']['tl_content']['slidercontent_legend'] = 'Art des Sliders';
+$GLOBALS['TL_LANG']['tl_content']['boxforward_legend'] = 'Weiterleitung (kompl. Feature-Box)';
 
 /*
  * Fields
@@ -39,3 +41,8 @@ $GLOBALS['TL_LANG']['tl_content']['tp_forward'] = ['Weiterleitung aktivieren', '
 $GLOBALS['TL_LANG']['tl_content']['tp_dividerButtonText'] = ['Beschriftung Button', 'Tragen Sie hier bitte die entsprechende Beschreibung ein.'];
 $GLOBALS['TL_LANG']['tl_content']['tp_includeModule'] = ['Modul inkludieren', 'Wählen Sie das passende Modul aus.'];
 $GLOBALS['TL_LANG']['tl_content']['tp_range_imagefirst'] = ['Bild vor Text anzeigen', 'Aktivieren Sie diese Option um das Bild vor dem Text anzeigen zu lassen.'];
+
+$GLOBALS['TL_LANG']['tl_content']['tpslidertype'] = ['Art Slider', 'Wählen Sie hier die Art des Sliders aus'];
+$GLOBALS['TL_LANG']['tl_content']['tp_vidSrcMp4'] = ['Video MP4 Format', 'Wählen Sie hier das entsprechende Video im MP4 Format aus.'];
+$GLOBALS['TL_LANG']['tl_content']['tp_vidSrcWebM'] = ['Video WebM Format', 'Wählen Sie hier das entsprechende Video im WebM Format aus.'];
+$GLOBALS['TL_LANG']['tl_content']['tp_jumpTo'] = ['Weiterleitung', 'Wählen Sie hier die passende Weiterleitung aus.'];
