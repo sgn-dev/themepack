@@ -59,6 +59,6 @@ abstract class AbstractModule extends Module
     {
         global $objPage;
 
-        return $objPage->title;
+        return $objPage->pageTitle;
     }
 }
