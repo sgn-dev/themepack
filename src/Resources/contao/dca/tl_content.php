@@ -40,7 +40,7 @@ $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpboxforward']
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpicon'] = 'headline,tp_icon;{text_legend},tp_text;';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tpimage'] = 'headline,tp_subHeadline;{image_legend},tp_singleSRC,tp_size;{text_legend},tp_text;';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpfeatureboxtype_tptext'] = 'headline,tp_subHeadline;{text_legend},tp_text;';
-$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tp_forward'] = 'url,titleText';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['tp_forward'] = 'url,titleText, target';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpslidertype_tpimage'] = 'tp_singleSRC,tp_size;';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['tpslidertype_tpvideo'] = 'tp_vidSrcMp4,tp_vidSrcWebM,tp_singleSRC,tp_size;';
 
