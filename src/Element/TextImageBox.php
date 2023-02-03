@@ -34,7 +34,7 @@ class TextImageBox extends AbstractElement
 
         if (null !== $objModel && is_file(TL_ROOT . '/' . $objModel->path)) {
             $this->tp_singleSRC = $objModel->path;
-            ContaoHelper::addImageToTemplate($this->Template, $this->arrData, null, null, $objModel);
+            ContaoHelper::addThemePackImageToTemplate($this->Template, $this->arrData, null, null, $objModel);
         }
     }
 }

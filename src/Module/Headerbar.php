@@ -41,7 +41,7 @@ class Headerbar extends AbstractModule
 
         if (null !== $objModel && is_file(TL_ROOT . '/' . $objModel->path)) {
             $this->tp_singleSRC = $objModel->path;
-            ContaoHelper::addImageToTemplate($this->Template, $this->arrData, null, null, $objModel);
+            ContaoHelper::addThemePackImageToTemplate($this->Template, $this->arrData, null, null, $objModel);
         }
 
         $this->Template->rootPage = ContaoHelper::getRootPageUrl();
