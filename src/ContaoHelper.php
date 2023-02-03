@@ -27,13 +27,14 @@ class ContaoHelper extends Frontend
      * @param null            $strLightboxId
      * @param FilesModel|null $objModel
      */
-    public static function addImageToTemplate($objTemplate, $arrItem, $intMaxWidth = null, $strLightboxId = null, FilesModel $objModel = null)
+    public static function addThemePackImageToTemplate($objTemplate, array $arrItem, $intMaxWidth = null, $strLightboxId = null, FilesModel $objModel = null)
     {
         try {
             $objFile = new \File($arrItem['tp_singleSRC']);
         } catch (\Exception $e) {
             $objFile = null;
         }
+
 
         $imgSize = $objFile ? $objFile->imageSize : false;
         $size = \StringUtil::deserialize($arrItem['tp_size']);
