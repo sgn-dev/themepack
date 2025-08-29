@@ -53,7 +53,7 @@ class ContaoHelper extends Frontend
             $intMaxWidth = \Config::get('maxImageWidth');
         }
 
-        $arrMargin = (TL_MODE === 'BE') ? [] : \StringUtil::deserialize($arrItem['imagemargin']);
+        $arrMargin = (TL_MODE === 'BE') ? [] : \StringUtil::deserialize(@$arrItem['imagemargin']);
 
         // Store the original dimensions
         $objTemplate->width = $imgSize[0];
@@ -142,8 +142,10 @@ class ContaoHelper extends Frontend
             $arrMeta['imageUrl'] = $arrMeta['link'];
             unset($arrMeta['title'], $arrMeta['link']);
 
+
+
             // Add the meta data to the item
-            if (!$arrItem['overwriteMeta']) {
+            if (!@$arrItem['overwriteMeta']) {
                 foreach ($arrMeta as $k => $v) {
                     switch ($k) {
                         case 'alt':
@@ -178,7 +180,7 @@ class ContaoHelper extends Frontend
         }
 
         // Float image
-        if ($arrItem['floating']) {
+        if (@$arrItem['floating']) {
             $objTemplate->floatClass = ' float_' . $arrItem['floating'];
         }
 
@@ -189,7 +191,6 @@ class ContaoHelper extends Frontend
         if ($arrItem['imageUrl'] && TL_MODE === 'FE') {
             $objTemplate->$strHrefKey = $arrItem['imageUrl'];
             $objTemplate->attributes = '';
-
             if ($arrItem['fullsize']) {
                 // Open images in the lightbox
                 if (preg_match('/\.(jpe?g|gif|png)$/', $arrItem['imageUrl'])) {
@@ -219,9 +220,9 @@ class ContaoHelper extends Frontend
         // Do not urlEncode() here because getImage() already does (see #3817)
         $objTemplate->tp_src = static::addFilesUrlTo($src);
         $objTemplate->tp_singleSRC = $arrItem['tp_singleSRC'];
-        $objTemplate->linkTitle = \StringUtil::specialchars($arrItem['linkTitle'] ?: $arrItem['title']);
+        $objTemplate->linkTitle = \StringUtil::specialchars(@$arrItem['linkTitle'] ?: @$arrItem['title']);
         $objTemplate->fullsize = $arrItem['fullsize'] ? true : false;
-        $objTemplate->addBefore = ('below' !== $arrItem['floating']);
+        $objTemplate->addBefore = ('below' !== @$arrItem['floating']);
         $objTemplate->margin = static::generateMargin($arrMargin);
         $objTemplate->addImage = true;
     }
