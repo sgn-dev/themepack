@@ -5,9 +5,9 @@
             <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
             </div>
         <?php endif; ?>
-        <?= $this->tp_text; ?>
+        <?= $this->tp_text ?? ''; ?>
         <?php if($this->tp_forward): ?>
-            <a href="<?= $this->url; ?>" class="button button-border button-dark button-rounded button-large noleftmargin topmargin-sm"><?= $this->titleText; ?></a>
+            <a href="<?= $this->url ?? ''; ?>" class="button button-border button-dark button-rounded button-large noleftmargin topmargin-sm"><?= $this->titleText ?? ''; ?></a>
         <?php endif; ?>
     </div>
 <?php endif; ?>
@@ -16,5 +16,5 @@
     <?php if($this->headline): ?>
         <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
     <?php endif; ?>
-    <?= $this->tp_text; ?>
+    <?= $this->tp_text ?? ''; ?>
 <?php endif; ?>

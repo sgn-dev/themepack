@@ -1,4 +1,4 @@
 <div class="heading-block <?= $this->class; ?>">
     <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
-    <?php if($this->tp_subHeadline): ?><span><?= $this->tp_subHeadline; ?></span><?php endif; ?>
+    <?php if(!empty($this->tp_subHeadline)): ?><span><?= $this->tp_subHeadline; ?></span><?php endif; ?>
 </div>

@@ -34,10 +34,10 @@
 <?php if($this->left === '' && $this->right === ''): ?>
     <div id="wrapper" class="clearfix">
         <?= $this->header; ?>
-        <?= $this->sections['topslider']; ?>
-        <?= $this->sections['pagetitle']; ?>
-        <?= $this->sections['pagesubmenu']; ?>
-        <?= $this->sections['infobar']; ?>
+        <?php if (!empty($this->sections['topslider'])): ?><?= $this->sections['topslider']; ?><?php endif; ?>
+        <?php if (!empty($this->sections['pagetitle'])): ?><?= $this->sections['pagetitle']; ?><?php endif; ?>
+        <?php if (!empty($this->sections['pagesubmenu'])): ?><?= $this->sections['pagesubmenu']; ?><?php endif; ?>
+        <?php if (!empty($this->sections['infobar'])): ?><?= $this->sections['infobar']; ?><?php endif; ?>
         <section id="content">
             <div class="content-wrap">
                 <?= $this->main ?>
@@ -50,9 +50,9 @@
 <?php if($this->right !== '' && $this->left === ''): ?>
     <div id="wrapper" class="clearfix">
         <?= $this->header; ?>
-        <?= $this->sections['pagetitle']; ?>
-        <?= $this->sections['pagesubmenu']; ?>
-        <?= $this->sections['infobar']; ?>
+        <?php if (!empty($this->sections['pagetitle'])): ?><?= $this->sections['pagetitle']; ?><?php endif; ?>
+        <?php if (!empty($this->sections['pagesubmenu'])): ?><?= $this->sections['pagesubmenu']; ?><?php endif; ?>
+        <?php if (!empty($this->sections['infobar'])): ?><?= $this->sections['infobar']; ?><?php endif; ?>
         <section id="content">
             <div class="content-wrap">
                 <div class="container clearfix">
