@@ -14,6 +14,7 @@ namespace Sgn47gradnord\Themepack\Backend;
 use Contao\ArticleModel;
 use Contao\Database;
 use Contao\DataContainer;
+use Contao\Input;
 use Contao\Model\Collection;
 use Contao\ModuleModel;
 use Contao\PageModel;
@@ -76,14 +77,14 @@ class Callback
     public function onsubmitCallbackTlContent(DataContainer $dc)
     {
         $activeRecord = $dc->activeRecord;
-        if (!$activeRecord || 'auto' === \Input::post('SUBMIT_TYPE')) {
+        if (!$activeRecord || 'auto' === Input::post('SUBMIT_TYPE')) {
             return;
         }
 
         // Element Container
         if ('tp_container_start' === $activeRecord->type) {
             // Find the next columns or column element
-            $nextElement = \Database::getInstance()
+            $nextElement = Database::getInstance()
                 ->prepare('
 					SELECT type
 					FROM tl_content
@@ -103,7 +104,7 @@ class Callback
 
             // Check if a stop element should be created
             if (!$nextElement->type) {
-                \Database::getInstance()
+                Database::getInstance()
                     ->prepare('INSERT INTO tl_content %s')
                     ->set([
                         'pid' => $activeRecord->pid,
@@ -119,7 +120,7 @@ class Callback
         // Element Section
         if ('tp_section_start' === $activeRecord->type) {
             // Find the next columns or column element
-            $nextElement = \Database::getInstance()
+            $nextElement = Database::getInstance()
                 ->prepare('
 					SELECT type
 					FROM tl_content
@@ -139,7 +140,7 @@ class Callback
 
             // Check if a stop element should be created
             if (!$nextElement->type) {
-                \Database::getInstance()
+                Database::getInstance()
                     ->prepare('INSERT INTO tl_content %s')
                     ->set([
                         'pid' => $activeRecord->pid,

@@ -26,6 +26,8 @@ class Textbox extends AbstractElement
      */
     protected function compile()
     {
+        $this->setBackendFrontendFlags();
+
         $this->Template->tp_text = StringUtil::encodeEmail($this->tp_text);
     }
 }

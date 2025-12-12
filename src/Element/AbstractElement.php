@@ -17,6 +17,21 @@ use Contao\FrontendTemplate;
 
 abstract class AbstractElement extends ContentElement
 {
+    protected function setBackendFrontendFlags()
+    {
+        // Set backend/frontend flag for templates
+        $container = \Contao\System::getContainer();
+        $scopeMatcher = $container->get('contao.routing.scope_matcher');
+        $request = $container->get('request_stack')->getCurrentRequest();
+
+        if ($request && $scopeMatcher->isBackendRequest($request)) {
+            $this->Template->isBackend = true;
+            $this->Template->isFrontend = false;
+        } else {
+            $this->Template->isBackend = false;
+            $this->Template->isFrontend = true;
+        }
+    }
 
     protected function addFilePathToTemplate(string $uuid, FrontendTemplate $template, string $parameter)
     {

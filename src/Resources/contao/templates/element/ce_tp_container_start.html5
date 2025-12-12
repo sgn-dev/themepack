@@ -1,4 +1,4 @@
-<?php if ('FE' === TL_MODE): ?>
+<?php if ($this->isFrontend): ?>
 <div <?= $this->cssID; ?> class="container <?= $this->class; ?> clearfix">
 
 <?php endif; ?>

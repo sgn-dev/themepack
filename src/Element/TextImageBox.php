@@ -28,11 +28,16 @@ class TextImageBox extends AbstractElement
      */
     protected function compile()
     {
+        $this->setBackendFrontendFlags();
+
         $this->Template->tp_text = StringUtil::encodeEmail($this->tp_text);
+
+        $container = \Contao\System::getContainer();
+        $projectDir = $container->getParameter('kernel.project_dir');
 
         $objModel = FilesModel::findByUuid($this->tp_singleSRC);
 
-        if (null !== $objModel && is_file(TL_ROOT . '/' . $objModel->path)) {
+        if (null !== $objModel && is_file($projectDir . '/' . $objModel->path)) {
             $this->tp_singleSRC = $objModel->path;
             ContaoHelper::addThemePackImageToTemplate($this->Template, $this->arrData, null, null, $objModel);
         }

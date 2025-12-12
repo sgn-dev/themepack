@@ -1,4 +1,4 @@
-<?php if ('FE' === TL_MODE): ?>
+<?php if ($this->isFrontend): ?>
     <div class="col_full clearfix <?= $this->class; ?>">
 
         <?php if($this->headline): ?>
@@ -15,7 +15,7 @@
     </div>
 <?php endif; ?>
 
-<?php if ('BE' === TL_MODE): ?>
+<?php if ($this->isBackend): ?>
     <?php if($this->headline): ?>
         <div class="heading-block topmargin-sm">
         <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>

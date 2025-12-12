@@ -1,4 +1,4 @@
-<?php if ('FE' === TL_MODE): ?>
+<?php if ($this->isFrontend): ?>
     <section id="page-title" class="page-title-parallax page-title-dark skrollable skrollable-between <?= $this->class; ?>" style="background-image: url('<?= $this->tp_src; ?>'); background-size: cover; padding: 120px 0px; background-position: 0px -178.912px;" data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -300px;">
 
         <div class="container clearfix">
@@ -10,7 +10,7 @@
     </section>
 <?php endif; ?>
 
-<?php if ('BE' === TL_MODE): ?>
+<?php if ($this->isBackend): ?>
     <?php if($this->headline): ?>
         <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
     <?php endif; ?>

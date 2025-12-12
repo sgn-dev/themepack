@@ -1,4 +1,4 @@
-<?php if ('FE' === TL_MODE): ?>
+<?php if ($this->isFrontend): ?>
 <div class="<?= $this->class; ?> <?= $this->tp_numberColumns; ?> <?php if($this->tp_lastColumn): ?>col_last<?php endif; ?>">
     <?php if($this->headline): ?>
         <div class="heading-block topmargin-sm">
@@ -33,7 +33,7 @@
     </div>
 <?php endif; ?>
 
-<?php if ('BE' === TL_MODE): ?>
+<?php if ($this->isBackend): ?>
     <?php if($this->headline): ?>
         <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
         <?php if(!empty($this->tp_subHeadline)): ?><span><?= $this->tp_subHeadline; ?></span><?php endif; ?>

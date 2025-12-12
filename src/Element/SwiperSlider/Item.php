@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Sgn47gradnord\Themepack\Element\SwiperSlider;
 
+use Contao\FilesModel;
 use Sgn47gradnord\Themepack\ContaoHelper;
 use Sgn47gradnord\Themepack\Element\AbstractElement;
 
@@ -26,9 +27,14 @@ class Item extends AbstractElement
      */
     protected function compile()
     {
-        $objModel = \FilesModel::findByUuid($this->tp_singleSRC);
+        $this->setBackendFrontendFlags();
 
-        if (null !== $objModel && is_file(TL_ROOT . '/' . $objModel->path)) {
+        $container = \Contao\System::getContainer();
+        $projectDir = $container->getParameter('kernel.project_dir');
+
+        $objModel = FilesModel::findByUuid($this->tp_singleSRC);
+
+        if (null !== $objModel && is_file($projectDir . '/' . $objModel->path)) {
             $this->tp_singleSRC = $objModel->path;
             ContaoHelper::addThemePackImageToTemplate($this->Template, $this->arrData, null, null, $objModel);
         }

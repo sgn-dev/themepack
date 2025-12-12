@@ -1,12 +1,12 @@
 {
   "name":"sgn47gradnord/themepack",
-  "description":"Customized Extension to use Theme working on Contao 5.3+ with PHP 8.1+ support",
+  "description":"ThemePack Bundle for Contao 5.3+ with PHP 8.1+ support - Custom Content Elements and Modules for modern theme-based websites",
   "type":"contao-bundle",
   "license":"proprietary",
   "authors":[
     {
       "name":"47 GradNord - Agentur für Internetlösungen",
-      "homepage":"http://www.47gradnord.de"
+      "homepage":"https://www.47gradnord.de"
     }
   ],
   "require":{

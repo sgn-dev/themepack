@@ -23,6 +23,6 @@ class ContainerStop extends AbstractElement
      */
     protected function compile()
     {
-        // TODO: Implement compile() method.
+        $this->setBackendFrontendFlags();
     }
 }

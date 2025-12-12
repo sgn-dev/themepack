@@ -1,4 +1,4 @@
-<?php if ('FE' === TL_MODE): ?>
+<?php if ($this->isFrontend): ?>
 <section id="slider" class="slider-element slider-parallax swiper_wrapper full-screen clearfix">
         <div class="slider-parallax-inner">
             <div class="swiper-container swiper-parent">

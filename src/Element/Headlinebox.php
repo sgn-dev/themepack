@@ -24,7 +24,7 @@ class Headlinebox extends AbstractElement
      */
     protected function compile()
     {
-
+        $this->setBackendFrontendFlags();
     }
 
 }
