@@ -1,6 +1,6 @@
 {
   "name":"sgn47gradnord/themepack",
-  "description":"Customized Extension to use Theme working on Contao 4.6.+",
+  "description":"Customized Extension to use Theme working on Contao 4.13+ with PHP 8.3 support",
   "type":"contao-bundle",
   "license":"proprietary",
   "authors":[
@@ -10,17 +10,15 @@
     }
   ],
   "require":{
-    "php": "^7.1.0 || ^8.1",
-    "contao/core-bundle":"^4.6.12"
+    "php": "^7.4 || ^8.0",
+    "contao/core-bundle":"^4.13"
   },
   "require-dev":{
-    "contao/core-bundle": "^4.6.12",
-    "contao/manager-plugin": "2.6.*",
-    "friendsofphp/php-cs-fixer": "^2.1"
+    "contao/manager-plugin": "^2.0",
+    "friendsofphp/php-cs-fixer": "^3.0"
   },
   "conflict": {
     "contao/core": "*",
-    "contao/core-bundle": "4.4.1",
     "contao/manager-plugin": "<2.0 || >=3.0"
   },
   "autoload":{
