@@ -1,0 +1,27 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    # Content Elements - automatisch als Service registrieren
+    Sgn47gradnord\Themepack\Element\:
+        resource: '../../Element/*'
+        exclude: '../../Element/{AbstractElement.php}'
+        tags:
+            - { name: contao.content_element }
+
+    # Frontend Modules - automatisch als Service registrieren
+    Sgn47gradnord\Themepack\Module\:
+        resource: '../../Module/*'
+        exclude: '../../Module/{AbstractModule.php}'
+        tags:
+            - { name: contao.frontend_module }
+
+    # Backend Callbacks
+    Sgn47gradnord\Themepack\Backend\Callback:
+        public: true
+
+    # Helper Services - Public für direkte Aufrufe
+    Sgn47gradnord\Themepack\ContaoHelper:
+        public: true
