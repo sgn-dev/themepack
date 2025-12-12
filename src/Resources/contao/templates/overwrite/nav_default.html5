@@ -3,7 +3,7 @@
         <?php if ($item['isActive']): ?>
             <li class="<?= $item['class'] ?> current">
                 <a href="<?= $item['href'] ?: './' ?>"><div><?= $item['link'] ?></div></a>
-                <?= $item['subitems'] ?>
+                <?= $item['subitems'] ?? '' ?>
             </li>
         <?php else: ?>
             <li<?php if ($item['class']) echo ' class="' . $item['class'] . '"'; ?>>
@@ -12,18 +12,18 @@
                     title="<?= $item['pageTitle'] ?: $item['title'] ?>"
                     <?php if ($item['class']) echo ' class="' . $item['class'] . '"'; ?>
 
-                    <?php if ($item['accesskey'] !== '') echo ' accesskey="' . $item['accesskey'] . '"'; ?>
+                    <?php if (!empty($item['accesskey'])) echo ' accesskey="' . $item['accesskey'] . '"'; ?>
 
-                    <?php if ($item['tabindex']) echo ' tabindex="' . $item['tabindex'] . '"'; ?>
+                    <?php if (!empty($item['tabindex'])) echo ' tabindex="' . $item['tabindex'] . '"'; ?>
 
-                    <?= $item['target'] ?>
+                    <?= $item['target'] ?? '' ?>
 
-                    <?= $item['rel'] ?>
+                    <?= $item['rel'] ?? '' ?>
 
                     <?php if (!empty($item['subitems'])) echo ' aria-haspopup="true"'; ?> itemprop="url">
                     <div><?= $item['link'] ?></div>
                 </a>
-                <?= $item['subitems'] ?>
+                <?= $item['subitems'] ?? '' ?>
             </li>
         <?php endif; ?>
     <?php endforeach; ?>
