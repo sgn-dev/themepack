@@ -28,16 +28,25 @@ class Featurebox extends AbstractElement
      */
     protected function compile()
     {
+        $this->setBackendFrontendFlags();
+
         $this->Template->tp_text = StringUtil::encodeEmail($this->tp_text);
+
+        $container = \Contao\System::getContainer();
+        $projectDir = $container->getParameter('kernel.project_dir');
+
         $objModel = FilesModel::findByUuid($this->tp_singleSRC);
 
-        if (null !== $objModel && is_file(TL_ROOT . '/' . $objModel->path)) {
+        if (null !== $objModel && is_file($projectDir . '/' . $objModel->path)) {
             $this->tp_singleSRC = $objModel->path;
             ContaoHelper::addThemePackImageToTemplate($this->Template, $this->arrData, null, null, $objModel);
         }
 
         if($this->tp_jumpTo) {
-            $this->Template->tp_jumpTo = PageModel::findOneBy('id', $this->tp_jumpTo)->getFrontendUrl();
+            $objPage = PageModel::findOneBy('id', $this->tp_jumpTo);
+            if ($objPage) {
+                $this->Template->tp_jumpTo = $objPage->getFrontendUrl();
+            }
         }
     }
 }

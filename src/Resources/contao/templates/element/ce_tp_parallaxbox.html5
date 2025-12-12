@@ -1,4 +1,4 @@
-<?php if ('FE' === TL_MODE): ?>
+<?php if ($this->isFrontend): ?>
     <div class="section parallax dark nomargin noborder" style="padding: 150px 0; background-image: url('<?= $this->tp_src ?? ''; ?>'); background-size: cover" data-bottom-top="background-position:0px 300px;" data-top-bottom="background-position:0px -300px;">
         <div class="container center clearfix">
 
@@ -14,7 +14,7 @@
     </div></div>
 <?php endif; ?>
 
-<?php if ('BE' === TL_MODE): ?>
+<?php if ($this->isBackend): ?>
     <?php if($this->headline): ?>
         <<?= $this->hl; ?>><?= $this->headline; ?></<?= $this->hl; ?>>
     <?php endif; ?>

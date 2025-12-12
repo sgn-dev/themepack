@@ -50,6 +50,11 @@ class Gallerybox extends AbstractElement
      */
     protected function compile()
     {
+        $this->setBackendFrontendFlags();
+
+        $container = \Contao\System::getContainer();
+        $projectDir = $container->getParameter('kernel.project_dir');
+
         $images = array();
         $auxDate = array();
         $objFiles = $this->objFiles;
@@ -58,7 +63,7 @@ class Gallerybox extends AbstractElement
         while ($objFiles->next()) {
 
             // Continue if the files has been processed or does not exist
-            if (isset($images[$objFiles->path]) || !file_exists(TL_ROOT . '/' . $objFiles->path)) {
+            if (isset($images[$objFiles->path]) || !file_exists($projectDir . '/' . $objFiles->path)) {
                 continue;
             }
 

@@ -8,7 +8,10 @@ $GLOBALS['TL_CSS'][] = 'layout/vendor/fontawesome/css/all.css|static';
 $GLOBALS['TL_CSS'][] = 'layout/vendor/css/animate.css|static';
 $GLOBALS['TL_CSS'][] = 'layout/vendor/css/magnific-popup.css|static';
 $GLOBALS['TL_CSS'][] = 'layout/vendor/css/responsive.css|static';
+
+// Get asset URL for Contao 5 compatibility
+$assetsUrl = \Contao\System::getContainer()->get('contao.assets.assets_context')->getStaticUrl();
 ?>
-<script src="<?= TL_ASSETS_URL ?>layout/vendor/js/jquery.js"></script>
-<script src="<?= TL_ASSETS_URL ?>layout/vendor/js/plugins.js"></script>
-<script src="<?= TL_ASSETS_URL ?>layout/vendor/js/functions.js"></script>
+<script src="<?= $assetsUrl ?>layout/vendor/js/jquery.js"></script>
+<script src="<?= $assetsUrl ?>layout/vendor/js/plugins.js"></script>
+<script src="<?= $assetsUrl ?>layout/vendor/js/functions.js"></script>

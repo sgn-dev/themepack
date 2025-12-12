@@ -24,6 +24,6 @@ class Dividerbuttonbox extends AbstractElement
      */
     protected function compile()
     {
-
+        $this->setBackendFrontendFlags();
     }
 }

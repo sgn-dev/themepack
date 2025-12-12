@@ -1,9 +1,9 @@
-<?php if ('FE' === TL_MODE): ?>
+<?php if ($this->isFrontend): ?>
     <div class="<?= $this->class; ?> <?= $this->tp_numberColumns; ?> <?php if($this->tp_lastColumn): ?>col_last<?php endif; ?>">
         <img data-animate="fadeInRight" src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>" class="fadeInRight animated">
     </div>
 <?php endif; ?>
 
-<?php if ('BE' === TL_MODE): ?>
+<?php if ($this->isBackend): ?>
     <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">
 <?php endif; ?>

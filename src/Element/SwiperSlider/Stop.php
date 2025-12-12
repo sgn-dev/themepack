@@ -28,6 +28,8 @@ class Stop extends AbstractElement
      */
     protected function compile()
     {
+        $this->setBackendFrontendFlags();
+
         $items = ContentModel::findBy(['type=? AND pid=? AND invisible =?'], ['tp_swiperslider_item', $this->pid, '']);
 
         if(null !== $items)

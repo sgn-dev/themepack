@@ -24,7 +24,11 @@ class Footerbar extends AbstractModule
      */
     public function generate()
     {
-        if ('BE' === TL_MODE) {
+        $container = \Contao\System::getContainer();
+        $scopeMatcher = $container->get('contao.routing.scope_matcher');
+        $request = $container->get('request_stack')->getCurrentRequest();
+
+        if ($request && $scopeMatcher->isBackendRequest($request)) {
             return $this->generateWildcard();
         }
 

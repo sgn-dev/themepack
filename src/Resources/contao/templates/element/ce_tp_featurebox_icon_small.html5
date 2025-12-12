@@ -1,4 +1,4 @@
-<?php if ('FE' === TL_MODE): ?>
+<?php if ($this->isFrontend): ?>
 <div class="<?= $this->tp_numberColumns; ?> <?= $this->class; ?> <?php if($this->tp_lastColumn): ?>col_last<?php endif; ?>">
 
     <?php if($this->tpfeatureboxtype == 'tpstandard'): ?>
@@ -46,7 +46,7 @@
     </div>
 <?php endif; ?>
 
-<?php if ('BE' === TL_MODE): ?>
+<?php if ($this->isBackend): ?>
 
     <?php if($this->tpfeatureboxtype == 'tpstandard'): ?>
         <img src="<?= $this->tp_src; ?>" alt="<?= $this->alt; ?>">

@@ -1,4 +1,4 @@
-<?php if ('FE' === TL_MODE): ?>
+<?php if ($this->isFrontend): ?>
 
     <?php if($this->tpslidertype === 'tpimage'): ?>
 
@@ -38,7 +38,7 @@
 
 <?php endif; ?>
 
-<?php if ('BE' === TL_MODE): ?>
+<?php if ($this->isBackend): ?>
 <h1><?= $this->tp_sliderHeadline; ?></h1>
 <p><?= $this->tp_sliderContent; ?></p>
 <img src="<?= $this->tp_src; ?>">

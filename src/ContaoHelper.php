@@ -11,12 +11,19 @@ declare(strict_types=1);
 
 namespace Sgn47gradnord\Themepack;
 
-use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
+use Contao\Config;
+use Contao\Controller;
+use Contao\CoreBundle\Framework\ContaoFramework;
+use Contao\CoreBundle\Routing\ScopeMatcher;
+use Contao\File;
 use Contao\FilesModel;
 use Contao\Frontend;
 use Contao\Image\PictureConfigurationInterface;
 use Contao\PageModel;
+use Contao\StringUtil;
+use Contao\System;
 use League\Uri\Http;
+use Psr\Log\LogLevel;
 
 class ContaoHelper extends Frontend
 {
@@ -29,15 +36,21 @@ class ContaoHelper extends Frontend
      */
     public static function addThemePackImageToTemplate($objTemplate, array $arrItem, $intMaxWidth = null, $strLightboxId = null, FilesModel $objModel = null)
     {
+        $container = System::getContainer();
+        $projectDir = $container->getParameter('kernel.project_dir');
+        $scopeMatcher = $container->get('contao.routing.scope_matcher');
+        $request = $container->get('request_stack')->getCurrentRequest();
+        $isBackend = $request && $scopeMatcher->isBackendRequest($request);
+
         try {
-            $objFile = new \File($arrItem['tp_singleSRC']);
+            $objFile = new File($arrItem['tp_singleSRC']);
         } catch (\Exception $e) {
             $objFile = null;
         }
 
 
         $imgSize = $objFile ? $objFile->imageSize : false;
-        $size = \StringUtil::deserialize($arrItem['tp_size']);
+        $size = StringUtil::deserialize($arrItem['tp_size']);
 
         if (is_numeric($size)) {
             $size = [0, 0, (int) $size];
@@ -50,10 +63,11 @@ class ContaoHelper extends Frontend
         }
 
         if (null === $intMaxWidth) {
-            $intMaxWidth = \Config::get('maxImageWidth');
+            $intMaxWidth = Config::get('maxImageWidth');
         }
 
-        $arrMargin = (TL_MODE === 'BE') ? [] : \StringUtil::deserialize(@$arrItem['imagemargin']);
+        // imagemargin was removed in Contao 5.0 - margins should now be handled via CSS
+        $arrMargin = [];
 
         // Store the original dimensions
         $objTemplate->width = $imgSize[0];
@@ -61,20 +75,8 @@ class ContaoHelper extends Frontend
 
         // Adjust the image size
         if ($intMaxWidth > 0) {
-            @trigger_error('Using a maximum front end width has been deprecated and will no longer work in Contao 5.0. Remove the "maxImageWidth" configuration and use responsive images instead.', E_USER_DEPRECATED);
-
-            // Subtract the margins before deciding whether to resize (see #6018)
-            if (\is_array($arrMargin) && 'px' === $arrMargin['unit']) {
-                $intMargin = (int) $arrMargin['left'] + (int) $arrMargin['right'];
-
-                // Reset the margin if it exceeds the maximum width (see #7245)
-                if ($intMaxWidth - $intMargin < 1) {
-                    $arrMargin['left'] = '';
-                    $arrMargin['right'] = '';
-                } else {
-                    $intMaxWidth -= $intMargin;
-                }
-            }
+            // maxImageWidth was deprecated in Contao 4.x and removed in 5.0
+            // Use responsive images instead
 
             if (\is_array($size) && ($size[0] > $intMaxWidth || (!$size[0] && !$size[1] && (!$imgSize[0] || $imgSize[0] > $intMaxWidth)))) {
                 // See #2268 (thanks to Thyon)
@@ -86,22 +88,22 @@ class ContaoHelper extends Frontend
         }
 
         try {
-            $container = \System::getContainer();
             $staticUrl = $container->get('contao.assets.files_context')->getStaticUrl();
-            $picture = $container->get('contao.image.picture_factory')->create(TL_ROOT . '/' . $arrItem['tp_singleSRC'], $size);
+            $picture = $container->get('contao.image.picture_factory')->create($projectDir . '/' . $arrItem['tp_singleSRC'], $size);
 
             $picture = [
-                'img' => $picture->getImg(TL_ROOT, $staticUrl),
-                'sources' => $picture->getSources(TL_ROOT, $staticUrl),
+                'img' => $picture->getImg($projectDir, $staticUrl),
+                'sources' => $picture->getSources($projectDir, $staticUrl),
             ];
 
             $src = $picture['img']['src'];
 
             if ($src !== $arrItem['tp_singleSRC']) {
-                $objFile = new \File(rawurldecode($src));
+                $objFile = new File(rawurldecode($src));
             }
         } catch (\Exception $e) {
-            \System::log('Image "' . $arrItem['tp_singleSRC'] . '" could not be processed: ' . $e->getMessage(), __METHOD__, TL_ERROR);
+            $logger = $container->get('monolog.logger.contao');
+            $logger->log(LogLevel::ERROR, 'Image "' . $arrItem['tp_singleSRC'] . '" could not be processed: ' . $e->getMessage(), ['contao' => new \Contao\CoreBundle\Monolog\ContaoContext(__METHOD__, 'ERROR')]);
 
             $src = '';
             $picture = ['img' => ['src' => '', 'srcset' => ''], 'sources' => []];
@@ -117,19 +119,19 @@ class ContaoHelper extends Frontend
 
         // Load the meta data
         if ($objModel instanceof FilesModel) {
-            if (TL_MODE === 'FE') {
+            if (!$isBackend) {
                 global $objPage;
 
-                $arrMeta = \Frontend::getMetaData($objModel->meta, $objPage->language);
+                $arrMeta = Frontend::getMetaData($objModel->meta, $objPage->language);
 
                 if (empty($arrMeta) && null !== $objPage->rootFallbackLanguage) {
-                    $arrMeta = \Frontend::getMetaData($objModel->meta, $objPage->rootFallbackLanguage);
+                    $arrMeta = Frontend::getMetaData($objModel->meta, $objPage->rootFallbackLanguage);
                 }
             } else {
-                $arrMeta = \Frontend::getMetaData($objModel->meta, $GLOBALS['TL_LANGUAGE']);
+                $arrMeta = Frontend::getMetaData($objModel->meta, $GLOBALS['TL_LANGUAGE']);
             }
 
-            \Controller::loadDataContainer('tl_files');
+            Controller::loadDataContainer('tl_files');
 
             // Add any missing fields
             foreach (array_keys($GLOBALS['TL_DCA']['tl_files']['fields']['meta']['eval']['metaFields']) as $k) {
@@ -150,7 +152,7 @@ class ContaoHelper extends Frontend
                     switch ($k) {
                         case 'alt':
                         case 'imageTitle':
-                            $arrItem[$k] = \StringUtil::specialchars($v);
+                            $arrItem[$k] = StringUtil::specialchars($v);
                             break;
                         default:
                             $arrItem[$k] = $v;
@@ -160,7 +162,7 @@ class ContaoHelper extends Frontend
             }
         }
 
-        $picture['alt'] = \StringUtil::specialchars($arrItem['alt']);
+        $picture['alt'] = StringUtil::specialchars($arrItem['alt']);
 
         // Move the title to the link tag so it is shown in the lightbox
         if (($arrItem['fullsize'] || $arrItem['imageUrl']) && $arrItem['imageTitle'] && !$arrItem['linkTitle']) {
@@ -169,7 +171,7 @@ class ContaoHelper extends Frontend
         }
 
         if (isset($arrItem['imageTitle'])) {
-            $picture['title'] = \StringUtil::specialchars($arrItem['imageTitle']);
+            $picture['title'] = StringUtil::specialchars($arrItem['imageTitle']);
         }
 
         $objTemplate->picture = $picture;
@@ -188,15 +190,15 @@ class ContaoHelper extends Frontend
         $strHrefKey = ('' !== $objTemplate->href) ? 'imageHref' : 'href';
 
         // Image link
-        if ($arrItem['imageUrl'] && TL_MODE === 'FE') {
+        if ($arrItem['imageUrl'] && !$isBackend) {
             $objTemplate->$strHrefKey = $arrItem['imageUrl'];
             $objTemplate->attributes = '';
             if ($arrItem['fullsize']) {
                 // Open images in the lightbox
                 if (preg_match('/\.(jpe?g|gif|png)$/', $arrItem['imageUrl'])) {
-                    // Do not add the TL_FILES_URL to external URLs (see #4923)
+                    // Do not add files URL to external URLs
                     if (0 !== strncmp($arrItem['imageUrl'], 'http://', 7) && 0 !== strncmp($arrItem['imageUrl'], 'https://', 8)) {
-                        $objTemplate->$strHrefKey = static::addFilesUrlTo(\System::urlEncode($arrItem['imageUrl']));
+                        $objTemplate->$strHrefKey = static::addFilesUrlTo(System::urlEncode($arrItem['imageUrl']));
                     }
 
                     $objTemplate->attributes = ' data-lightbox="' . $strLightboxId . '"';
@@ -207,8 +209,8 @@ class ContaoHelper extends Frontend
         }
 
         // Fullsize view
-        elseif ($arrItem['fullsize'] && TL_MODE === 'FE') {
-            $objTemplate->$strHrefKey = static::addFilesUrlTo(\System::urlEncode($arrItem['singleSRC']));
+        elseif ($arrItem['fullsize'] && !$isBackend) {
+            $objTemplate->$strHrefKey = static::addFilesUrlTo(System::urlEncode($arrItem['singleSRC']));
             $objTemplate->attributes = ' data-lightbox="' . $strLightboxId . '"';
         }
 
@@ -220,10 +222,10 @@ class ContaoHelper extends Frontend
         // Do not urlEncode() here because getImage() already does (see #3817)
         $objTemplate->tp_src = static::addFilesUrlTo($src);
         $objTemplate->tp_singleSRC = $arrItem['tp_singleSRC'];
-        $objTemplate->linkTitle = \StringUtil::specialchars(@$arrItem['linkTitle'] ?: @$arrItem['title']);
+        $objTemplate->linkTitle = StringUtil::specialchars(@$arrItem['linkTitle'] ?: @$arrItem['title']);
         $objTemplate->fullsize = $arrItem['fullsize'] ? true : false;
         $objTemplate->addBefore = ('below' !== @$arrItem['floating']);
-        $objTemplate->margin = static::generateMargin($arrMargin);
+        $objTemplate->margin = ''; // Margins are now handled via CSS in Contao 5.0
         $objTemplate->addImage = true;
     }
 
@@ -236,7 +238,7 @@ class ContaoHelper extends Frontend
      */
     public static function createUrl(int $jumpTo = null, string $params = '', $queryString = ''): string
     {
-        $container = \System::getContainer();
+        $container = System::getContainer();
 
         $request = $container->get('request_stack')->getCurrentRequest();
         $url = $request->getSchemeAndHttpHost() . $request->getBaseUrl() . $request->getPathInfo();

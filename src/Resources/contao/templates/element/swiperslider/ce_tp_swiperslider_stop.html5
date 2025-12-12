@@ -1,4 +1,4 @@
-<?php if ('FE' === TL_MODE): ?>
+<?php if ($this->isFrontend): ?>
                 </div>
             <?php if($this->showNavigation): ?>
                 <div class="slider-arrow-left"><i class="icon-angle-left"></i></div>
