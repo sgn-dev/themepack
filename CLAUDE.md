@@ -4,253 +4,93 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Projektübersicht
 
-ThemePack ist ein proprietäres Contao 4.6+ Bundle (`sgn47gradnord/themepack`) zur Erstellung von Theme-basierten Websites. Es erweitert Contao um Custom Content Elements, Module und Templates für moderne Website-Layouts.
+ThemePack ist ein proprietäres Contao-Bundle (`sgn47gradnord/themepack`, Namespace `Sgn47gradnord\Themepack`) der 47GradNord GmbH. Es liefert eigene Content Elements, Frontend-Module und Templates für Theme-basierte Websites und wird via Composer / Contao Manager als `contao-bundle` eingebunden.
 
 ## Technologie-Stack
 
-- **PHP**: ^7.1.0 || ^8.1 (aktuell in Umstellung auf PHP 8.3 Kompatibilität)
-- **Contao**: ^4.6.12 Core Bundle
-- **Namespace**: `Sgn47gradnord\Themepack`
-- **Bundle-Typ**: contao-bundle
+- **PHP**: `^8.1` (8.3 empfohlen)
+- **Contao**: `^5.3` (Core-Bundle, LTS)
+- **Bundle-Typ**: `contao-bundle`, registriert über `ContaoManager\Plugin` (lädt nach `ContaoCoreBundle`)
+
+Die Migration von Contao 4.x / PHP 7 auf Contao 5.3 / PHP 8.1+ ist mit den 3.x-Releases abgeschlossen (siehe `UPGRADE.md` für Migrationsdetails inkl. `TL_MODE`-Entfernung und `imagemargin`-Removal).
 
 ## Entwicklungskommandos
 
-### Code-Formatierung
 ```bash
-# PHP-CS-Fixer ausführen
+# Code-Style (Konfiguration in .php_cs)
 vendor/bin/php-cs-fixer fix
-```
 
-Die Konfiguration befindet sich in `.php_cs` mit strikten Regeln:
-- Strict types erforderlich
-- Strict comparisons
-- PSR-4 Autoloading
-- Symfony Coding Standards
-
-### Composer
-```bash
-# Dependencies installieren
+# Dependencies
 composer install
-
-# Dependencies aktualisieren
 composer update
 ```
 
+`.php_cs` erzwingt u.a. `@Symfony` + `@Symfony:risky`, `declare_strict_types`, `strict_comparison`, `strict_param`, kurze Array-Syntax und sortierte Imports — vor jedem Commit ausführen.
+
+Es existiert aktuell **keine Test-Suite** im Repo (`.php_cs` referenziert `tests/`, der Ordner ist aber nicht angelegt).
+
 ## Architektur
 
-### Verzeichnisstruktur
+### Big Picture
 
-```
-src/
-├── Backend/
-│   └── Callback.php              # DCA Callbacks für Content-Validierung
-├── ContaoManager/
-│   └── Plugin.php                # Bundle-Registrierung (lädt nach CoreBundle)
-├── Element/                      # Content Element Klassen
-│   ├── AbstractElement.php
-│   ├── Featurebox.php
-│   ├── Gallerybox.php
-│   ├── Imagebox.php
-│   ├── Textbox.php
-│   ├── TextImageBox.php
-│   ├── Parallaxbox.php
-│   ├── ContainerStart/Stop.php   # Wrapper Elements
-│   ├── SectionStart/Stop.php     # Wrapper Elements
-│   └── SwiperSlider/             # Slider-Komponenten
-├── Module/                       # Frontend Module
-│   ├── AbstractModule.php
-│   ├── Headerbar.php
-│   ├── Footerbar.php
-│   └── Pagetitle.php
-├── Resources/contao/
-│   ├── config/config.php         # Globale Konfiguration, Element-Registrierung
-│   ├── dca/                      # Data Container Arrays
-│   ├── languages/de/             # Deutsche Übersetzungen
-│   └── templates/                # HTML5 Templates
-│       ├── overwrite/            # Contao Core Template Overrides
-│       ├── element/              # Content Element Templates
-│       └── module/               # Modul Templates
-├── ContaoHelper.php              # Utility-Klasse für Bilder & URLs
-└── ThemepackBundle.php           # Bundle-Einstiegspunkt
-```
+Das Bundle hängt sich an drei Contao-Erweiterungspunkte:
 
-### Kern-Komponenten
+1. **Content Elements** (`$GLOBALS['TL_CTE']`) — Klassen unter `src/Element/`, registriert in `Resources/contao/config/config.php` in zwei Gruppen: `themepack-elements` und `themepack-swiperslider`.
+2. **Frontend Modules** (`$GLOBALS['FE_MOD']['themepack']`) — Klassen unter `src/Module/`.
+3. **Wrappers** (`$GLOBALS['TL_WRAPPERS']['start']` / `['stop']`) — `tp_swiperslider_*`, `tp_container_*`, `tp_section_*`. Start/Stop-Elemente **müssen** hier eingetragen sein, sonst behandelt Contao sie nicht als Wrapper.
 
-#### 1. Content Elements (`src/Element/`)
+DCA-Definitionen (Paletten, Subpaletten, Felder, SQL-Schema) liegen in `Resources/contao/dca/tl_content.php` und `tl_module.php`. Subpaletten werden über Selektoren wie `tpfeatureboxtype`, `tp_forward` getriggert. Validierung läuft über einen `onsubmit_callback` an `Backend\Callback::onsubmitCallbackTlContent`.
 
-Alle Elements erben von `AbstractElement` (welches von `Contao\ContentElement` erbt):
+Konstante `$GLOBALS['THEMEPACK']['numberColumns']` definiert das eigene Spalten-Layout-System (`col_full`, `col_half`, `col_one_third` … `col_three_fifth`), genutzt von Featurebox/Textbox/Imagebox/TextImageBox.
 
-- **Featurebox**: Icon/Bild + Text mit optionalem Link
-- **Textbox**: Reiner Textinhalt
-- **Imagebox**: Einzelbild mit Link
-- **TextImageBox**: Kombination Text + Bild
-- **Gallerybox**: Multi-Bild Galerie
-- **Parallaxbox**: Parallax-Effekt Bild
-- **SwiperSlider**: Start/Item/Stop Wrapper für Slider
-- **Container/Section**: Start/Stop Wrapper für Layout-Strukturen
+### Klassenhierarchie
 
-Jedes Element:
-- Hat ein `$strTemplate` Property
-- Implementiert `compile()` Methode
-- Nutzt `ContaoHelper` für Bildverarbeitung
+- Alle Content Elements erben von `Element\AbstractElement extends Contao\ContentElement` und implementieren `compile()` mit gesetztem `$strTemplate`.
+- Alle Module erben von `Module\AbstractModule extends Contao\Module`. Helper: `getRootPageTitle()`, `getPageTitle()`, `generateWildcard()` (Backend-Platzhalter).
+- Bildverarbeitung und URL-Erzeugung **immer** über `ContaoHelper` (statisch):
+  - `addThemePackImageToTemplate()` — responsive Picture-Generierung über Contao Picture Factory inkl. Lightbox/Meta-Daten aus `FilesModel`. Direkte Nutzung der Contao Image API umgehen.
+  - `createUrl()` / `getRootPageUrl()` — URL-Bau mit `League\Uri`, unterstützt `PageModel`-jumpTo und Query-String-Merge.
 
-#### 2. Module (`src/Module/`)
+### Templates
 
-Alle Module erben von `AbstractModule` (welches von `Contao\Module` erbt):
+Liegen unter `Resources/contao/templates/`:
 
-- **Headerbar**: Verschiedene Header-Varianten (boxed, transparent, floating)
-- **Footerbar**: Footer-Bereich
-- **Pagetitle**: Seiten-Titel mit Breadcrumb
+- **`overwrite/`** — überschreibt Contao-Core-Templates (`nav_default.html5`, `mod_navigation.html5`, `mod_breadcrumb.html5`, `mod_article.html5`).
+- **`element/`** — ein Template pro Content Element, Konvention `ce_tp_*.html5` (z.B. `ce_tp_featurebox.html5`, Variante `ce_tp_featurebox_icon_small.html5`). SwiperSlider-Templates unter `element/swiperslider/`.
+- **`module/`** — Konvention `mod_tp_*.html5`. Headerbar hat Varianten: `boxed`, `transparent`, `transparent_full`, `floating`.
+- **Direkt unter `templates/`**: `fe_page.html5` (Layout-Template mit Sections) und `js_themepack_setup.html5`.
 
-Helper-Methoden in `AbstractModule`:
-- `getRootPageTitle()`: Root-Page Titel abrufen
-- `getPageTitle()`: Aktuellen Seiten-Titel abrufen
-- `generateWildcard()`: Backend-Platzhalter generieren
+Templates verwenden ThemePack-Felder (`$this->tp_*`), `$this->picture` (responsive Image), `$this->sections` in `fe_page`, `$item` in Navigations-Templates.
 
-#### 3. ContaoHelper (`src/ContaoHelper.php`)
+## PHP-8 / Contao-5-Pflichten beim Editieren von Templates
 
-Zentrale Utility-Klasse mit statischen Methoden:
-
-- **`addThemePackImageToTemplate()`**: Fügt Bild-Daten zu Templates hinzu
-  - Verarbeitet Bildgrößen, Margins, Lightbox
-  - Nutzt Contao Picture Factory für responsive Images
-  - Lädt Meta-Daten aus FilesModel
-
-- **`createUrl()`**: Generiert URLs mit optionalen Query-Parametern
-  - Unterstützt PageModel jump-to
-  - Merge von Query-Strings via League\Uri
-
-- **`getRootPageUrl()`**: Root-Page URL abrufen
-
-### Template-System
-
-#### Template-Kategorien
-
-1. **Overwrite Templates** (`templates/overwrite/`)
-   - Überschreiben Contao Core Templates
-   - **WICHTIG**: `nav_default.html5` und `fe_page.html5` haben temporäre Fixes in `/templates/` (siehe THEMEPACK.md)
-
-2. **Element Templates** (`templates/element/`)
-   - Ein Template pro Content Element
-   - Namenskonvention: `ce_tp_*.html5`
-   - Varianten möglich (z.B. `ce_tp_featurebox_icon_small.html5`)
-
-3. **Module Templates** (`templates/module/`)
-   - Ein Template pro Modul
-   - Namenskonvention: `mod_tp_*.html5`
-   - Varianten für Header: boxed, transparent, floating, transparent_full
-
-#### Template-Variablen
-
-Häufig verwendete Variablen in Templates:
-- `$this->tp_*`: ThemePack-spezifische Felder
-- `$this->picture`: Responsive Image Array
-- `$this->sections`: Layout-Bereiche (bei fe_page.html5)
-- `$item`: Navigation/Breadcrumb Items (bei nav_default.html5)
-
-### DCA-System
-
-#### tl_content.php
-
-Definiert Paletten für alle ThemePack Content Elements:
-
-- **Palettes**: Feld-Gruppen pro Element-Typ
-- **Subpalettes**: Dynamisch eingeblendete Felder (z.B. bei `tp_forward`)
-- **Selectors**: Trigger für Subpaletten (`tpfeatureboxtype`, `tp_forward`, etc.)
-- **Fields**: Feld-Definitionen mit SQL-Schema
-
-Callback-Integration:
-```php
-$GLOBALS['TL_DCA']['tl_content']['config']['onsubmit_callback'][] =
-    ['Sgn47gradnord\Themepack\Backend\Callback', 'onsubmitCallbackTlContent'];
-```
-
-#### config.php
-
-Registriert alle Komponenten:
+PHP 8 wirft `Warning: Undefined array key`, Contao 5 hat einige Variablen umbenannt. Beim Anfassen oder neu Anlegen eines Templates konsequent absichern:
 
 ```php
-// Content Elements
-$GLOBALS['TL_CTE']['themepack-elements'] = [...];
-$GLOBALS['TL_CTE']['themepack-swiperslider'] = [...];
-
-// Wrappers
-$GLOBALS['TL_WRAPPERS']['start'][] = 'tp_swiperslider_start';
-$GLOBALS['TL_WRAPPERS']['stop'][] = 'tp_swiperslider_stop';
-
-// Frontend Modules
-$GLOBALS['FE_MOD']['themepack'] = [...];
-
-// Konstanten
-$GLOBALS['THEMEPACK']['numberColumns'] = [...]; // Spalten-Layout
-```
-
-## PHP 8.3 Kompatibilität
-
-**Aktueller Stand**: In aktiver Migration (siehe `THEMEPACK.md`)
-
-### Kritische Probleme behoben
-
-1. **nav_default.html5**: Undefined array keys für `subitems`, `accesskey`, `tabindex`, `target`, `rel`
-2. **fe_page.html5**: Undefined array keys für `$this->sections`
-
-### Best Practices für neue/geänderte Templates
-
-```php
-// NULL Coalescing Operator verwenden
 <?= $item['subitems'] ?? '' ?>
-<?= $this->tp_subHeadline ?? '' ?>
-
-// !empty() statt direkte Prüfung
-<?php if (!empty($item['accesskey'])): ?>
-    <!-- Content -->
-<?php endif; ?>
-
-// Array-Key-Existenz prüfen
-<?php if (array_key_exists('key', $array)): ?>
+<?php if (!empty($item['accesskey'])): ?>…<?php endif; ?>
+<?php if (array_key_exists('key', $array)): ?>…<?php endif; ?>
 ```
 
-### Strict Types
+`TL_MODE` existiert in Contao 5 nicht mehr — stattdessen `$this->isFrontend` / `$this->isBackend`. Das `imagemargin`-Feld ist entfernt; Bildabstände müssen via CSS-Klassen am Element gelöst werden (Details in `UPGRADE.md`).
 
-Alle PHP-Dateien verwenden:
-```php
-declare(strict_types=1);
-```
+## Konventionen
 
-## Spalten-System
-
-Das Bundle definiert ein eigenes Spalten-Layout-System (`$GLOBALS['THEMEPACK']['numberColumns']`):
-
-- `col_full`: Einspaltig
-- `col_half`: 2-spaltig
-- `col_one_third`: 3-spaltig (1/3 Breite)
-- `col_one_fourth`: 4-spaltig (1/4 Breite)
-- `col_one_fifth`: 5-spaltig
-- `col_one_sixth`: 6-spaltig
-- `col_two_third`: 2/3 Breite
-- `col_three_fourth`: 3/4 Breite
-- `col_two_fifth`: 2/5 Breite
-- `col_three_fifth`: 3/5 Breite
-
-Verwendet in: Featurebox, Textbox, Imagebox, TextImageBox
+- `declare(strict_types=1);` in jeder PHP-Datei.
+- Strict Comparison (`===`/`!==`) — wird vom `.php_cs`-Regelwerk erzwungen.
+- Neue Wrapper-Elemente: in `config.php` zusätzlich zu `TL_CTE` auch in `TL_WRAPPERS['start'|'stop']` eintragen.
+- Sprachdateien nur in `Resources/contao/languages/de/` (keine weiteren Sprachen im Bundle).
 
 ## Git-Workflow
 
-- **Main Branch**: `develop`
-- **Aktuelle Warnings**: PHP 8 Warnungen wurden gefixed (siehe THEMEPACK.md)
-- **Temporäre Fixes**: Befinden sich in `/templates/` - nach Bundle-Update löschen!
+- Default-Branch: `develop`. Releases über `release/*`-Branches und Tags (Git-Flow-Stil, siehe `git log`).
+- Main-Branch für PRs gegen Upstream: `main`.
 
-## Wichtige Hinweise
+## Referenzen
 
-1. **Bildverarbeitung**: Immer `ContaoHelper::addThemePackImageToTemplate()` nutzen, niemals direkt Contao Image API
-2. **URL-Generierung**: `ContaoHelper::createUrl()` für konsistente URL-Erzeugung
-3. **Template-Variablen**: Immer mit `??` oder `!empty()` absichern (PHP 8.3)
-4. **Wrappers**: Start/Stop Elements müssen in `$GLOBALS['TL_WRAPPERS']` registriert sein
-5. **Code Style**: Vor Commit `php-cs-fixer fix` ausführen
-6. **Strict Comparison**: Immer `===` statt `==` verwenden (siehe .php_cs Regeln)
+- `UPGRADE.md` — Schritt-für-Schritt-Migration Contao 4.x → 5.3 inkl. Breaking Changes, Troubleshooting, Rollback.
+- `THEMEPACK.md` — Historische Notiz zur PHP-8.3-Template-Härtung (heute größtenteils im Bundle umgesetzt).
 
-## Copyright & Lizenz
+## Lizenz
 
-- **Copyright**: 2008-2018, 47GradNord - Agentur für Internetlösungen
-- **Lizenz**: Proprietary
-- **Kontakt**: info@47gradnord.de
+Proprietary © 47GradNord — info@47gradnord.de.
